@@ -1,0 +1,14 @@
+apiVersion: connection.dfcloud.funnelflux.pro/v1alpha1
+kind: Connection
+metadata:
+  name: example-connection
+spec:
+  forProvider:
+    name: example-connection
+    networkIdRef:
+      name: example-network
+    peer:
+      accountId: 'example-project'
+      vpcId: 'example-vpc'
+  providerConfigRef:
+    name: default

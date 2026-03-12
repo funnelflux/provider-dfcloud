@@ -1,0 +1,18 @@
+apiVersion: datastore.dfcloud.m.funnelflux.pro/v1alpha1
+kind: Datastore
+metadata:
+  name: example-datastore
+spec:
+  forProvider:
+    name: example-datastore
+    location:
+      provider: gcp
+      region: europe-west1
+    tier:
+      maxMemoryBytes: 3000000000
+      performanceTier: dev
+    networkIdRef:
+      name: example-network
+  providerConfigRef:
+    kind: ProviderConfig
+    name: default

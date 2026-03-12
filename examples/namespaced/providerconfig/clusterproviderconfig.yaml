@@ -1,4 +1,4 @@
-apiVersion: dfcloud.m.crossplane.io/v1beta1
+apiVersion: dfcloud.m.funnelflux.pro/v1beta1
 kind: ClusterProviderConfig
 metadata:
   name: default
