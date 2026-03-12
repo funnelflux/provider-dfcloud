@@ -7,15 +7,21 @@ import (
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
-	// Import requires using a randomly generated ID from provider: nl-2e21sda
-	"null_resource": idWithStub(),
+	// dfcloud_datastore is identified by the provider-assigned id field.
+	"dfcloud_datastore": config.IdentifierFromProvider,
+	// dfcloud_network is identified by the provider-assigned id field.
+	"dfcloud_network": config.IdentifierFromProvider,
+	// dfcloud_connection is identified by the provider-assigned connection_id field.
+	"dfcloud_connection": connectionExternalName(),
 }
 
-func idWithStub() config.ExternalName {
+func connectionExternalName() config.ExternalName {
 	e := config.IdentifierFromProvider
 	e.GetExternalNameFn = func(tfstate map[string]any) (string, error) {
-		en, _ := config.IDAsExternalName(tfstate)
-		return en, nil
+		if v, ok := tfstate["connection_id"].(string); ok && v != "" {
+			return v, nil
+		}
+		return config.IDAsExternalName(tfstate)
 	}
 	return e
 }

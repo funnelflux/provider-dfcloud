@@ -6,8 +6,12 @@ import (
 
 	ujconfig "github.com/crossplane/upjet/v2/pkg/config"
 
-	nullCluster "github.com/Bluesboy/provider-dfcloud/config/cluster/null"
-	nullNamespaced "github.com/Bluesboy/provider-dfcloud/config/namespaced/null"
+	connectionCluster "github.com/Bluesboy/provider-dfcloud/config/cluster/connection"
+	datastoreCluster "github.com/Bluesboy/provider-dfcloud/config/cluster/datastore"
+	networkCluster "github.com/Bluesboy/provider-dfcloud/config/cluster/network"
+	connectionNamespaced "github.com/Bluesboy/provider-dfcloud/config/namespaced/connection"
+	datastoreNamespaced "github.com/Bluesboy/provider-dfcloud/config/namespaced/datastore"
+	networkNamespaced "github.com/Bluesboy/provider-dfcloud/config/namespaced/network"
 )
 
 const (
@@ -32,8 +36,9 @@ func GetProvider() *ujconfig.Provider {
 		))
 
 	for _, configure := range []func(provider *ujconfig.Provider){
-		// add custom config functions
-		nullCluster.Configure,
+		datastoreCluster.Configure,
+		networkCluster.Configure,
+		connectionCluster.Configure,
 	} {
 		configure(pc)
 	}
@@ -56,8 +61,9 @@ func GetProviderNamespaced() *ujconfig.Provider {
 		}))
 
 	for _, configure := range []func(provider *ujconfig.Provider){
-		// add custom config functions
-		nullNamespaced.Configure,
+		datastoreNamespaced.Configure,
+		networkNamespaced.Configure,
+		connectionNamespaced.Configure,
 	} {
 		configure(pc)
 	}
