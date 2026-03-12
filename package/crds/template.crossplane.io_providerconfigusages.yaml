@@ -4,14 +4,14 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.19.0
-  name: providerconfigusages.template.crossplane.io
+  name: providerconfigusages.dfcloud.crossplane.io
 spec:
-  group: template.crossplane.io
+  group: dfcloud.crossplane.io
   names:
     categories:
     - crossplane
     - provider
-    - template
+    - dfcloud
     kind: ProviderConfigUsage
     listKind: ProviderConfigUsageList
     plural: providerconfigusages

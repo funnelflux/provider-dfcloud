@@ -7,7 +7,7 @@ import (
 
 // Package type metadata.
 const (
-	Group   = "template.m.crossplane.io"
+	Group   = "dfcloud.m.funnelflux.pro"
 	Version = "v1alpha1"
 )
 
