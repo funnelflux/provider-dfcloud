@@ -34,14 +34,14 @@ import (
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 
-	apisCluster "github.com/Bluesboy/provider-dfcloud/apis/cluster"
-	apisNamespaced "github.com/Bluesboy/provider-dfcloud/apis/namespaced"
-	"github.com/Bluesboy/provider-dfcloud/config"
-	"github.com/Bluesboy/provider-dfcloud/internal/clients"
-	controllerCluster "github.com/Bluesboy/provider-dfcloud/internal/controller/cluster"
-	controllerNamespaced "github.com/Bluesboy/provider-dfcloud/internal/controller/namespaced"
-	"github.com/Bluesboy/provider-dfcloud/internal/features"
-	"github.com/Bluesboy/provider-dfcloud/internal/version"
+	apisCluster "github.com/funnelflux/provider-dfcloud/apis/cluster"
+	apisNamespaced "github.com/funnelflux/provider-dfcloud/apis/namespaced"
+	"github.com/funnelflux/provider-dfcloud/config"
+	"github.com/funnelflux/provider-dfcloud/internal/clients"
+	controllerCluster "github.com/funnelflux/provider-dfcloud/internal/controller/cluster"
+	controllerNamespaced "github.com/funnelflux/provider-dfcloud/internal/controller/namespaced"
+	"github.com/funnelflux/provider-dfcloud/internal/features"
+	"github.com/funnelflux/provider-dfcloud/internal/version"
 )
 
 const (

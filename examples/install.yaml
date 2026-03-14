@@ -3,4 +3,4 @@ kind: Provider
 metadata:
   name: provider-dfcloud
 spec:
-  package: xpkg.crossplane.io/Bluesboy/provider-dfcloud:v0.1.0
+  package: xpkg.crossplane.io/funnelflux/provider-dfcloud:v0.1.0

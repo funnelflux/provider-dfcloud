@@ -10,15 +10,19 @@ package cluster
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/Bluesboy/provider-dfcloud/apis/cluster/null/v1alpha1"
-	v1alpha1cluster "github.com/Bluesboy/provider-dfcloud/apis/cluster/v1alpha1"
-	v1beta1 "github.com/Bluesboy/provider-dfcloud/apis/cluster/v1beta1"
+	v1alpha1 "github.com/funnelflux/provider-dfcloud/apis/cluster/connection/v1alpha1"
+	v1alpha1datastore "github.com/funnelflux/provider-dfcloud/apis/cluster/datastore/v1alpha1"
+	v1alpha1network "github.com/funnelflux/provider-dfcloud/apis/cluster/network/v1alpha1"
+	v1alpha1cluster "github.com/funnelflux/provider-dfcloud/apis/cluster/v1alpha1"
+	v1beta1 "github.com/funnelflux/provider-dfcloud/apis/cluster/v1beta1"
 )
 
 func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1datastore.SchemeBuilder.AddToScheme,
+		v1alpha1network.SchemeBuilder.AddToScheme,
 		v1alpha1cluster.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
 	)

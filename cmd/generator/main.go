@@ -7,7 +7,7 @@ import (
 
 	"github.com/crossplane/upjet/v2/pkg/pipeline"
 
-	"github.com/Bluesboy/provider-dfcloud/config"
+	"github.com/funnelflux/provider-dfcloud/config"
 )
 
 func main() {

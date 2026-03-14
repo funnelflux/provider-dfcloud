@@ -9,15 +9,19 @@ import (
 
 	"github.com/crossplane/upjet/v2/pkg/controller"
 
-	resource "github.com/Bluesboy/provider-dfcloud/internal/controller/namespaced/null/resource"
-	providerconfig "github.com/Bluesboy/provider-dfcloud/internal/controller/namespaced/providerconfig"
+	connection "github.com/funnelflux/provider-dfcloud/internal/controller/namespaced/connection/connection"
+	datastore "github.com/funnelflux/provider-dfcloud/internal/controller/namespaced/datastore/datastore"
+	network "github.com/funnelflux/provider-dfcloud/internal/controller/namespaced/network/network"
+	providerconfig "github.com/funnelflux/provider-dfcloud/internal/controller/namespaced/providerconfig"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
-		resource.Setup,
+		connection.Setup,
+		datastore.Setup,
+		network.Setup,
 		providerconfig.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
@@ -31,7 +35,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 // the supplied manager gated.
 func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
-		resource.SetupGated,
+		connection.SetupGated,
+		datastore.SetupGated,
+		network.SetupGated,
 		providerconfig.SetupGated,
 	} {
 		if err := setup(mgr, o); err != nil {

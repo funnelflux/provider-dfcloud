@@ -6,17 +6,17 @@ import (
 
 	ujconfig "github.com/crossplane/upjet/v2/pkg/config"
 
-	connectionCluster "github.com/Bluesboy/provider-dfcloud/config/cluster/connection"
-	datastoreCluster "github.com/Bluesboy/provider-dfcloud/config/cluster/datastore"
-	networkCluster "github.com/Bluesboy/provider-dfcloud/config/cluster/network"
-	connectionNamespaced "github.com/Bluesboy/provider-dfcloud/config/namespaced/connection"
-	datastoreNamespaced "github.com/Bluesboy/provider-dfcloud/config/namespaced/datastore"
-	networkNamespaced "github.com/Bluesboy/provider-dfcloud/config/namespaced/network"
+	connectionCluster "github.com/funnelflux/provider-dfcloud/config/cluster/connection"
+	datastoreCluster "github.com/funnelflux/provider-dfcloud/config/cluster/datastore"
+	networkCluster "github.com/funnelflux/provider-dfcloud/config/cluster/network"
+	connectionNamespaced "github.com/funnelflux/provider-dfcloud/config/namespaced/connection"
+	datastoreNamespaced "github.com/funnelflux/provider-dfcloud/config/namespaced/datastore"
+	networkNamespaced "github.com/funnelflux/provider-dfcloud/config/namespaced/network"
 )
 
 const (
 	resourcePrefix = "dfcloud"
-	modulePath     = "github.com/Bluesboy/provider-dfcloud"
+	modulePath     = "github.com/funnelflux/provider-dfcloud"
 )
 
 //go:embed schema.json

@@ -39,4 +39,4 @@ make build
 ## Report a Bug
 
 For filing bugs, suggesting improvements, or requesting new features, please
-open an [issue](https://github.com/Bluesboy/provider-dfcloud/issues).
+open an [issue](https://github.com/funnelflux/provider-dfcloud/issues).

@@ -10,15 +10,19 @@ package namespaced
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/Bluesboy/provider-dfcloud/apis/namespaced/null/v1alpha1"
-	v1alpha1namespaced "github.com/Bluesboy/provider-dfcloud/apis/namespaced/v1alpha1"
-	v1beta1 "github.com/Bluesboy/provider-dfcloud/apis/namespaced/v1beta1"
+	v1alpha1 "github.com/funnelflux/provider-dfcloud/apis/namespaced/connection/v1alpha1"
+	v1alpha1datastore "github.com/funnelflux/provider-dfcloud/apis/namespaced/datastore/v1alpha1"
+	v1alpha1network "github.com/funnelflux/provider-dfcloud/apis/namespaced/network/v1alpha1"
+	v1alpha1namespaced "github.com/funnelflux/provider-dfcloud/apis/namespaced/v1alpha1"
+	v1beta1 "github.com/funnelflux/provider-dfcloud/apis/namespaced/v1beta1"
 )
 
 func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1datastore.SchemeBuilder.AddToScheme,
+		v1alpha1network.SchemeBuilder.AddToScheme,
 		v1alpha1namespaced.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
 	)

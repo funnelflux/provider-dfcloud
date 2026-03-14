@@ -1,4 +1,4 @@
-module github.com/Bluesboy/provider-dfcloud
+module github.com/funnelflux/provider-dfcloud
 
 go 1.24.11
 

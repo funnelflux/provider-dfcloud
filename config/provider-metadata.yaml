@@ -1,40 +1,88 @@
-name: hashicorp/null
+name: funnelflux/dfcloud
 resources:
-    null_resource:
+    dfcloud_connection Resource - terraform-provider-dfcloud:
         subCategory: ""
-        description: The null_resource resource implements the standard resource lifecycle but takes no further action. On Terraform 1.4 and later, use the terraform_data resource type https://developer.hashicorp.com/terraform/language/resources/terraform-data instead. Terraform 1.9 and later support the moved configuration block from null_resource to terraform_data. The triggers argument allows specifying an arbitrary set of values that, when changed, will cause the resource to be replaced.
-        name: null_resource
-        title: null_resource Resource - terraform-provider-null
-        examples:
-            - name: cluster
-              manifest: |-
-                {
-                  "connection": [
-                    {
-                      "host": "${element(aws_instance.cluster[*].public_ip, 0)}"
-                    }
-                  ],
-                  "provisioner": {
-                    "remote-exec": [
-                      {
-                        "inline": [
-                          "bootstrap-cluster.sh ${join(\" \",\n      aws_instance.cluster[*].private_ip)}"
-                        ]
-                      }
-                    ]
-                  },
-                  "triggers": {
-                    "cluster_instance_ids": "${join(\",\", aws_instance.cluster[*].id)}"
-                  }
-                }
-              dependencies:
-                aws_instance.cluster: |-
-                    {
-                      "ami": "ami-0dcc1e21636832c5d",
-                      "count": 3,
-                      "instance_type": "m5.large"
-                    }
+        description: Manages a Dragonfly network connection.
+        name: dfcloud_connection Resource - terraform-provider-dfcloud
+        title: dfcloud_connection Resource - terraform-provider-dfcloud
         argumentDocs:
-            id: (String) This is set to a random value at create time.
-            triggers: (Map of String) A map of arbitrary strings that, when changed, will force the null resource to be replaced, re-running any associated provisioners.
+            account_id: (String) The account ID of the target VPC.
+            connection_id: (String) The ID of the connection.
+            name: (String) The name of the connection.
+            network_id: (String) The ID of the network to connect to.
+            peer: (Attributes) The VPC to connect to. (see below for nested schema)
+            peer_connection_id: (String) The underlying cloud provider connection ID.
+            region: (String) The region of the target VPC.
+            status: (String) The status of the connection.
+            status_detail: (String) Additional details about the connection status.
+            vpc_id: (String) The ID of the target VPC.
+        importStatements: []
+    dfcloud_datastore Resource - terraform-provider-dfcloud:
+        subCategory: ""
+        description: Manages a Dragonfly datastore resource.
+        name: dfcloud_datastore Resource - terraform-provider-dfcloud
+        title: dfcloud_datastore Resource - terraform-provider-dfcloud
+        argumentDocs:
+            "3e9": |-
+                |
+                | AWS      | byoc     | 6.25e9, 12.5e9, 25e9, 50e9, 100e9, 200e9, 400e9                                                 |
+                | AWS      | standard | 12.5e9, 25e9, 50e9, 100e9, 200e9, 400e9                                                           |
+                | AWS      | enhanced | 6.25e9, 12.5e9, 25e9, 50e9, 100e9, 200e9, 300e9, 400e9                                        |
+                | AWS      | extreme  | 6.25e9, 12.5e9, 25e9, 50e9, 100e9, 200e9                                                          |
+                | GCP      | dev      | 3e9                                                                                                          |
+                | GCP      | byoc     | 6.25e9, 12.5e9, 25e9, 50e9, 100e9, 200e9, 300e9, 400e9                                        |
+                | GCP      | standard | 12.5e9, 25e9, 50e9, 100e9, 200e9, 300e9, 400e9                                                  |
+                | GCP      | enhanced | 6.25e9, 12.5e9, 25e9, 50e9, 100e9, 150e9, 200e9, 250e9, 300e9, 400e9                      |
+                | GCP      | extreme  | 6.25e9, 12.5e9, 25e9, 50e9, 100e9, 150e9, 200e9                                                 |
+                | Azure    | dev      | 3e9                                                                                                          |
+                | Azure    | standard | 12.5e9, 25e9, 50e9, 100e9, 200e9, 300e9, 400e9                                                  |
+                | Azure    | enhanced | 6.5e9, 12.5e9, 25e9, 50e9, 100e9, 150e9, 200e9, 300e9                                         |
+                | Azure    | extreme  | 6.5e9, 12.5e9, 25e9, 50e9, 100e9                                                                    |
+            "6250000000": (6.25 GB), 12500000000 (12.5 GB), 25000000000 (25 GB), 50000000000 (50 GB), 100000000000 (100 GB).
+            acl_rules: (List of String, Sensitive) List of ACL rules.
+            addr: (String) The address of the datastore.
+            availability_zones: (List of String) The availability zones for the datastore location.
+            bullmq: (Boolean) Enable BullMQ compatibility.
+            cache_mode: (Boolean) Enable cache mode for memory management.
+            cluster: (Attributes) The cluster configuration for the datastore. (see below for nested schema)
+            created_at: (Number) The timestamp when the datastore was created.
+            disable_pass_key: (Boolean) Disable the passkey for the datastore.
+            dragonfly: (Attributes) Dragonfly-specific configuration. (see below for nested schema)
+            duration_hours: (Number) DurationHours is the duration of the maintenance window in hours. 0 means maintenance is always allowed.
+            hour: (Number) The hour of the day to start the maintenance window. 0-23.
+            id: (String) The ID of the datastore.
+            location: (Attributes) The location configuration for the datastore. (see below for nested schema)
+            maintenance_window: (Attributes) The maintenance window configuration for the datastore. (see below for nested schema)
+            max_memory_bytes: (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
+            memcached: (Boolean) Enable Memcached protocol.
+            name: (String) The name of the datastore.
+            network_id: (String) The ID of the network the datastore should be placed into.
+            password: (String, Sensitive) The password for the datastore.
+            performance_tier: (String) The performance tier for the datastore.
+            provider: (String) The provider for the datastore location.
+            region: (String) The region for the datastore location.
+            replicas: (Number) The number of replicas for the datastore. Default is 0.
+            shard_memory: (e.g. shard_memory × number of shards).
+            sidekiq: (Boolean) Enable Sidekiq compatibility.
+            tier: (Attributes) The tier configuration for the datastore. (see below for nested schema)
+            tls: (Boolean) Enable TLS.
+            weekday: (Number) The day of the week to start the maintenance window. 0-6, 0 is Sunday.
+        importStatements: []
+    dfcloud_network Resource - terraform-provider-dfcloud:
+        subCategory: ""
+        description: Manages a Dragonfly network.
+        name: dfcloud_network Resource - terraform-provider-dfcloud
+        title: dfcloud_network Resource - terraform-provider-dfcloud
+        argumentDocs:
+            account_id: (String) The account ID of the VPC.
+            cidr_block: (String) The CIDR block for the network.
+            created_at: (Number) The timestamp when the network was created.
+            id: (String) The ID of the network.
+            location: (Attributes) The location configuration for the network. (see below for nested schema)
+            name: (String) The name of the network.
+            provider: (String) The provider for the network location.
+            region: (String) The region for the network location.
+            resource_id: (String) The resource ID of the VPC.
+            status: (String) The status of the network.
+            vpc: (Attributes) The VPC information for the network. (see below for nested schema)
         importStatements: []

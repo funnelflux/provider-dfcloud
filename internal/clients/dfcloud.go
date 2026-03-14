@@ -11,8 +11,8 @@ import (
 
 	"github.com/crossplane/upjet/v2/pkg/terraform"
 
-	clusterv1beta1 "github.com/Bluesboy/provider-dfcloud/apis/cluster/v1beta1"
-	namespacedv1beta1 "github.com/Bluesboy/provider-dfcloud/apis/namespaced/v1beta1"
+	clusterv1beta1 "github.com/funnelflux/provider-dfcloud/apis/cluster/v1beta1"
+	namespacedv1beta1 "github.com/funnelflux/provider-dfcloud/apis/namespaced/v1beta1"
 )
 
 const (
