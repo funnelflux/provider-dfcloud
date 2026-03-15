@@ -3,5 +3,15 @@ kind: Provider
 metadata:
   name: provider-dfcloud
 spec:
+  controller:
+    image: xpkg.upbound.io/funnelflux/provider-dfcloud:v0.1.0
+  meta:
+    description: "Crossplane provider for Example Cloud."
+    homepage: 'https://github.com/funnelflux/provider-dfcloud'
+    source: 'https://github.com/funnelflux/provider-dfcloud'
+    license: 'Apache-2.0'
+    maintainers:
+    - name: Shamil Sattarov
+      email: youngreg@ya.ru
   capabilities:
-    - SafeStart
+  - SafeStart
