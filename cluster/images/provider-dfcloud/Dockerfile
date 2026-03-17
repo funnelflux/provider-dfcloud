@@ -1,5 +1,5 @@
 FROM alpine:3.23.2
-RUN apk --no-cache add ca-certificates bash curl jq
+RUN apk --no-cache add ca-certificates bash
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -27,19 +27,15 @@ ENV TF_FORK=0
 RUN mkdir -p ${PLUGIN_DIR}
 
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_${TARGETOS}_${TARGETARCH}.zip /tmp
+ADD ${TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX}/${TERRAFORM_PROVIDER_DOWNLOAD_NAME}_${TERRAFORM_PROVIDER_VERSION}_${TARGETOS}_${TARGETARCH}.zip /tmp
 ADD terraformrc.hcl ${TF_CLI_CONFIG_FILE}
 
 RUN unzip /tmp/terraform_${TERRAFORM_VERSION}_${TARGETOS}_${TARGETARCH}.zip -d /usr/local/bin \
   && chmod +x /usr/local/bin/terraform \
   && rm /tmp/terraform_${TERRAFORM_VERSION}_${TARGETOS}_${TARGETARCH}.zip \
-  && namespace="${TERRAFORM_PROVIDER_SOURCE%/*}" \
-  && type="${TERRAFORM_PROVIDER_SOURCE#*/}" \
-  && provider_meta="$(curl -fsSL "https://registry.terraform.io/v1/providers/${namespace}/${type}/${TERRAFORM_PROVIDER_VERSION}/download/${TARGETOS}/${TARGETARCH}")" \
-  && provider_download_url="$(printf '%s' "${provider_meta}" | jq -r '.download_url')" \
-  && curl -fsSL "${provider_download_url}" -o /tmp/provider.zip \
-  && unzip /tmp/provider.zip -d ${PLUGIN_DIR} \
+  && unzip /tmp/${TERRAFORM_PROVIDER_DOWNLOAD_NAME}_${TERRAFORM_PROVIDER_VERSION}_${TARGETOS}_${TARGETARCH}.zip -d ${PLUGIN_DIR} \
   && chmod +x ${PLUGIN_DIR}/* \
-  && rm /tmp/provider.zip \
+  && rm /tmp/${TERRAFORM_PROVIDER_DOWNLOAD_NAME}_${TERRAFORM_PROVIDER_VERSION}_${TARGETOS}_${TARGETARCH}.zip \
   && chown -R ${USER_ID}:${USER_ID} /terraform
 # End of - Setup Terraform environment
 
