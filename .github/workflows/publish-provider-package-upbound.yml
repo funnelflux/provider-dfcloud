@@ -18,9 +18,6 @@ jobs:
 
     env:
       VERSION: ${{ github.event.inputs.version || github.ref_name }}
-      TERRAFORM_PROVIDER_SOURCE: funnelflux/dfcloud
-      TERRAFORM_PROVIDER_REPO: https://github.com/funnelflux/terraform-provider-dfcloud
-      TERRAFORM_PROVIDER_VERSION: 0.0.19
 
     steps:
       - name: Checkout
@@ -42,9 +39,6 @@ jobs:
           make go.build
           make xpkg.build \
             VERSION="${VERSION}" \
-            TERRAFORM_PROVIDER_SOURCE="${TERRAFORM_PROVIDER_SOURCE}" \
-            TERRAFORM_PROVIDER_REPO="${TERRAFORM_PROVIDER_REPO}" \
-            TERRAFORM_PROVIDER_VERSION="${TERRAFORM_PROVIDER_VERSION}"
 
       - name: Locate xpkg
         run: |
