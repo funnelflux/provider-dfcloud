@@ -2,7 +2,7 @@
 
 `provider-dfcloud` is a Crossplane provider for Dragonfly Cloud. It is built
 with Upjet from the Terraform provider
-[`funnelflux/dfcloud`](https://registry.terraform.io/providers/funnelflux/dfcloud/latest).
+[`dragonflydb/dfcloud`](https://registry.terraform.io/providers/dragonflydb/dfcloud/latest).
 
 The provider currently exposes managed resources for:
 - `Network`
@@ -118,4 +118,4 @@ Crossplane provider source:
 - https://github.com/funnelflux/provider-dfcloud
 
 Terraform provider source:
-- https://github.com/funnelflux/terraform-provider-dfcloud
+- https://github.com/dragonflydb/terraform-provider-dfcloud
