@@ -250,6 +250,21 @@ func (in *PeerInitParameters) DeepCopyInto(out *PeerInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.AzureAppObjectID != nil {
+		in, out := &in.AzureAppObjectID, &out.AzureAppObjectID
+		*out = new(string)
+		**out = **in
+	}
+	if in.AzureResourceGroup != nil {
+		in, out := &in.AzureResourceGroup, &out.AzureResourceGroup
+		*out = new(string)
+		**out = **in
+	}
+	if in.AzureTenantID != nil {
+		in, out := &in.AzureTenantID, &out.AzureTenantID
+		*out = new(string)
+		**out = **in
+	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region
 		*out = new(string)
@@ -280,6 +295,21 @@ func (in *PeerObservation) DeepCopyInto(out *PeerObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.AzureAppObjectID != nil {
+		in, out := &in.AzureAppObjectID, &out.AzureAppObjectID
+		*out = new(string)
+		**out = **in
+	}
+	if in.AzureResourceGroup != nil {
+		in, out := &in.AzureResourceGroup, &out.AzureResourceGroup
+		*out = new(string)
+		**out = **in
+	}
+	if in.AzureTenantID != nil {
+		in, out := &in.AzureTenantID, &out.AzureTenantID
+		*out = new(string)
+		**out = **in
+	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region
 		*out = new(string)
@@ -307,6 +337,21 @@ func (in *PeerParameters) DeepCopyInto(out *PeerParameters) {
 	*out = *in
 	if in.AccountID != nil {
 		in, out := &in.AccountID, &out.AccountID
+		*out = new(string)
+		**out = **in
+	}
+	if in.AzureAppObjectID != nil {
+		in, out := &in.AzureAppObjectID, &out.AzureAppObjectID
+		*out = new(string)
+		**out = **in
+	}
+	if in.AzureResourceGroup != nil {
+		in, out := &in.AzureResourceGroup, &out.AzureResourceGroup
+		*out = new(string)
+		**out = **in
+	}
+	if in.AzureTenantID != nil {
+		in, out := &in.AzureTenantID, &out.AzureTenantID
 		*out = new(string)
 		**out = **in
 	}

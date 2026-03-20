@@ -86,7 +86,16 @@ type PeerInitParameters struct {
 	// The account ID of the target VPC.
 	AccountID *string `json:"accountId,omitempty" tf:"account_id,omitempty"`
 
-	// The region of the target VPC.
+	// The object ID of the Azure AD application used for peering. Required for Azure network connections.
+	AzureAppObjectID *string `json:"azureAppObjectId,omitempty" tf:"azure_app_object_id,omitempty"`
+
+	// The Azure resource group of the peer VNet. Required for Azure network connections.
+	AzureResourceGroup *string `json:"azureResourceGroup,omitempty" tf:"azure_resource_group,omitempty"`
+
+	// The Azure tenant ID. Required for Azure network connections.
+	AzureTenantID *string `json:"azureTenantId,omitempty" tf:"azure_tenant_id,omitempty"`
+
+	// The region of the target VPC. Only required for AWS cross-region connections.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The ID of the target VPC.
@@ -98,7 +107,16 @@ type PeerObservation struct {
 	// The account ID of the target VPC.
 	AccountID *string `json:"accountId,omitempty" tf:"account_id,omitempty"`
 
-	// The region of the target VPC.
+	// The object ID of the Azure AD application used for peering. Required for Azure network connections.
+	AzureAppObjectID *string `json:"azureAppObjectId,omitempty" tf:"azure_app_object_id,omitempty"`
+
+	// The Azure resource group of the peer VNet. Required for Azure network connections.
+	AzureResourceGroup *string `json:"azureResourceGroup,omitempty" tf:"azure_resource_group,omitempty"`
+
+	// The Azure tenant ID. Required for Azure network connections.
+	AzureTenantID *string `json:"azureTenantId,omitempty" tf:"azure_tenant_id,omitempty"`
+
+	// The region of the target VPC. Only required for AWS cross-region connections.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The ID of the target VPC.
@@ -111,7 +129,19 @@ type PeerParameters struct {
 	// +kubebuilder:validation:Optional
 	AccountID *string `json:"accountId" tf:"account_id,omitempty"`
 
-	// The region of the target VPC.
+	// The object ID of the Azure AD application used for peering. Required for Azure network connections.
+	// +kubebuilder:validation:Optional
+	AzureAppObjectID *string `json:"azureAppObjectId,omitempty" tf:"azure_app_object_id,omitempty"`
+
+	// The Azure resource group of the peer VNet. Required for Azure network connections.
+	// +kubebuilder:validation:Optional
+	AzureResourceGroup *string `json:"azureResourceGroup,omitempty" tf:"azure_resource_group,omitempty"`
+
+	// The Azure tenant ID. Required for Azure network connections.
+	// +kubebuilder:validation:Optional
+	AzureTenantID *string `json:"azureTenantId,omitempty" tf:"azure_tenant_id,omitempty"`
+
+	// The region of the target VPC. Only required for AWS cross-region connections.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 

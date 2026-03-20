@@ -149,8 +149,21 @@ spec:
                       accountId:
                         description: The account ID of the target VPC.
                         type: string
+                      azureAppObjectId:
+                        description: The object ID of the Azure AD application used
+                          for peering. Required for Azure network connections.
+                        type: string
+                      azureResourceGroup:
+                        description: The Azure resource group of the peer VNet. Required
+                          for Azure network connections.
+                        type: string
+                      azureTenantId:
+                        description: The Azure tenant ID. Required for Azure network
+                          connections.
+                        type: string
                       region:
-                        description: The region of the target VPC.
+                        description: The region of the target VPC. Only required for
+                          AWS cross-region connections.
                         type: string
                       vpcId:
                         description: The ID of the target VPC.
@@ -261,8 +274,21 @@ spec:
                       accountId:
                         description: The account ID of the target VPC.
                         type: string
+                      azureAppObjectId:
+                        description: The object ID of the Azure AD application used
+                          for peering. Required for Azure network connections.
+                        type: string
+                      azureResourceGroup:
+                        description: The Azure resource group of the peer VNet. Required
+                          for Azure network connections.
+                        type: string
+                      azureTenantId:
+                        description: The Azure tenant ID. Required for Azure network
+                          connections.
+                        type: string
                       region:
-                        description: The region of the target VPC.
+                        description: The region of the target VPC. Only required for
+                          AWS cross-region connections.
                         type: string
                       vpcId:
                         description: The ID of the target VPC.
@@ -357,8 +383,21 @@ spec:
                       accountId:
                         description: The account ID of the target VPC.
                         type: string
+                      azureAppObjectId:
+                        description: The object ID of the Azure AD application used
+                          for peering. Required for Azure network connections.
+                        type: string
+                      azureResourceGroup:
+                        description: The Azure resource group of the peer VNet. Required
+                          for Azure network connections.
+                        type: string
+                      azureTenantId:
+                        description: The Azure tenant ID. Required for Azure network
+                          connections.
+                        type: string
                       region:
-                        description: The region of the target VPC.
+                        description: The region of the target VPC. Only required for
+                          AWS cross-region connections.
                         type: string
                       vpcId:
                         description: The ID of the target VPC.
