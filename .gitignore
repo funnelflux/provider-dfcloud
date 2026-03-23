@@ -1,6 +1,7 @@
 /.cache
 /.work
 /_output
+/examples-generated
 cover.out
 /vendor
 /.vendor-new

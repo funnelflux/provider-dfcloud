@@ -16,9 +16,11 @@ import (
 
 type ConnectionInitParameters struct {
 
+	// (String) The name of the connection.
 	// The name of the connection.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// (String) The ID of the network to connect to.
 	// The ID of the network to connect to.
 	// +crossplane:generate:reference:type=github.com/funnelflux/provider-dfcloud/apis/namespaced/network/v1alpha1.Network
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
@@ -31,40 +33,50 @@ type ConnectionInitParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.NamespacedSelector `json:"networkIdSelector,omitempty" tf:"-"`
 
+	// (Attributes) The VPC to connect to. (see below for nested schema)
 	Peer *PeerInitParameters `json:"peer,omitempty" tf:"peer,omitempty"`
 }
 
 type ConnectionObservation struct {
 
+	// (String) The ID of the connection.
 	// The ID of the connection.
 	ConnectionID *string `json:"connectionId,omitempty" tf:"connection_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// (String) The name of the connection.
 	// The name of the connection.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// (String) The ID of the network to connect to.
 	// The ID of the network to connect to.
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
+	// (Attributes) The VPC to connect to. (see below for nested schema)
 	Peer *PeerObservation `json:"peer,omitempty" tf:"peer,omitempty"`
 
+	// (String) The underlying cloud provider connection ID.
 	// The underlying cloud provider connection ID.
 	PeerConnectionID *string `json:"peerConnectionId,omitempty" tf:"peer_connection_id,omitempty"`
 
+	// (String) The status of the connection.
 	// The status of the connection.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// (String) Additional details about the connection status.
 	// Additional details about the connection status.
 	StatusDetail *string `json:"statusDetail,omitempty" tf:"status_detail,omitempty"`
 }
 
 type ConnectionParameters struct {
 
+	// (String) The name of the connection.
 	// The name of the connection.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// (String) The ID of the network to connect to.
 	// The ID of the network to connect to.
 	// +crossplane:generate:reference:type=github.com/funnelflux/provider-dfcloud/apis/namespaced/network/v1alpha1.Network
 	// +kubebuilder:validation:Optional
@@ -78,74 +90,93 @@ type ConnectionParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.NamespacedSelector `json:"networkIdSelector,omitempty" tf:"-"`
 
+	// (Attributes) The VPC to connect to. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Peer *PeerParameters `json:"peer,omitempty" tf:"peer,omitempty"`
 }
 
 type PeerInitParameters struct {
 
+	// (String) The account ID of the target VPC.
 	// The account ID of the target VPC.
 	AccountID *string `json:"accountId,omitempty" tf:"account_id,omitempty"`
 
+	// (String) The object ID of the Azure AD application used for peering. Required for Azure network connections.
 	// The object ID of the Azure AD application used for peering. Required for Azure network connections.
 	AzureAppObjectID *string `json:"azureAppObjectId,omitempty" tf:"azure_app_object_id,omitempty"`
 
+	// (String) The Azure resource group of the peer VNet. Required for Azure network connections.
 	// The Azure resource group of the peer VNet. Required for Azure network connections.
 	AzureResourceGroup *string `json:"azureResourceGroup,omitempty" tf:"azure_resource_group,omitempty"`
 
+	// (String) The Azure tenant ID. Required for Azure network connections.
 	// The Azure tenant ID. Required for Azure network connections.
 	AzureTenantID *string `json:"azureTenantId,omitempty" tf:"azure_tenant_id,omitempty"`
 
+	// region connections.
 	// The region of the target VPC. Only required for AWS cross-region connections.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// (String) The ID of the target VPC.
 	// The ID of the target VPC.
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type PeerObservation struct {
 
+	// (String) The account ID of the target VPC.
 	// The account ID of the target VPC.
 	AccountID *string `json:"accountId,omitempty" tf:"account_id,omitempty"`
 
+	// (String) The object ID of the Azure AD application used for peering. Required for Azure network connections.
 	// The object ID of the Azure AD application used for peering. Required for Azure network connections.
 	AzureAppObjectID *string `json:"azureAppObjectId,omitempty" tf:"azure_app_object_id,omitempty"`
 
+	// (String) The Azure resource group of the peer VNet. Required for Azure network connections.
 	// The Azure resource group of the peer VNet. Required for Azure network connections.
 	AzureResourceGroup *string `json:"azureResourceGroup,omitempty" tf:"azure_resource_group,omitempty"`
 
+	// (String) The Azure tenant ID. Required for Azure network connections.
 	// The Azure tenant ID. Required for Azure network connections.
 	AzureTenantID *string `json:"azureTenantId,omitempty" tf:"azure_tenant_id,omitempty"`
 
+	// region connections.
 	// The region of the target VPC. Only required for AWS cross-region connections.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// (String) The ID of the target VPC.
 	// The ID of the target VPC.
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type PeerParameters struct {
 
+	// (String) The account ID of the target VPC.
 	// The account ID of the target VPC.
 	// +kubebuilder:validation:Optional
 	AccountID *string `json:"accountId" tf:"account_id,omitempty"`
 
+	// (String) The object ID of the Azure AD application used for peering. Required for Azure network connections.
 	// The object ID of the Azure AD application used for peering. Required for Azure network connections.
 	// +kubebuilder:validation:Optional
 	AzureAppObjectID *string `json:"azureAppObjectId,omitempty" tf:"azure_app_object_id,omitempty"`
 
+	// (String) The Azure resource group of the peer VNet. Required for Azure network connections.
 	// The Azure resource group of the peer VNet. Required for Azure network connections.
 	// +kubebuilder:validation:Optional
 	AzureResourceGroup *string `json:"azureResourceGroup,omitempty" tf:"azure_resource_group,omitempty"`
 
+	// (String) The Azure tenant ID. Required for Azure network connections.
 	// The Azure tenant ID. Required for Azure network connections.
 	// +kubebuilder:validation:Optional
 	AzureTenantID *string `json:"azureTenantId,omitempty" tf:"azure_tenant_id,omitempty"`
 
+	// region connections.
 	// The region of the target VPC. Only required for AWS cross-region connections.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// (String) The ID of the target VPC.
 	// The ID of the target VPC.
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId" tf:"vpc_id,omitempty"`
@@ -178,7 +209,7 @@ type ConnectionStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Connection is the Schema for the Connections API. <no value>
+// Connection is the Schema for the Connections API. Manages a Dragonfly network connection.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

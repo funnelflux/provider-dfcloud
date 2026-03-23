@@ -15,28 +15,34 @@ import (
 
 type LocationInitParameters struct {
 
+	// (String) The provider for the network location.
 	// The provider for the network location.
 	Provider *string `json:"provider,omitempty" tf:"provider,omitempty"`
 
+	// (String) The region for the network location.
 	// The region for the network location.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
 
 type LocationObservation struct {
 
+	// (String) The provider for the network location.
 	// The provider for the network location.
 	Provider *string `json:"provider,omitempty" tf:"provider,omitempty"`
 
+	// (String) The region for the network location.
 	// The region for the network location.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
 
 type LocationParameters struct {
 
+	// (String) The provider for the network location.
 	// The provider for the network location.
 	// +kubebuilder:validation:Optional
 	Provider *string `json:"provider" tf:"provider,omitempty"`
 
+	// (String) The region for the network location.
 	// The region for the network location.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region" tf:"region,omitempty"`
@@ -44,45 +50,58 @@ type LocationParameters struct {
 
 type NetworkInitParameters struct {
 
+	// (String) The CIDR block for the network.
 	// The CIDR block for the network.
 	CidrBlock *string `json:"cidrBlock,omitempty" tf:"cidr_block,omitempty"`
 
+	// (Attributes) The location configuration for the network. (see below for nested schema)
 	Location *LocationInitParameters `json:"location,omitempty" tf:"location,omitempty"`
 
+	// (String) The name of the network.
 	// The name of the network.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 }
 
 type NetworkObservation struct {
 
+	// (String) The CIDR block for the network.
 	// The CIDR block for the network.
 	CidrBlock *string `json:"cidrBlock,omitempty" tf:"cidr_block,omitempty"`
 
+	// (Number) The timestamp when the network was created.
 	// The timestamp when the network was created.
 	CreatedAt *float64 `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// (String) The ID of the network.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// (Attributes) The location configuration for the network. (see below for nested schema)
 	Location *LocationObservation `json:"location,omitempty" tf:"location,omitempty"`
 
+	// (String) The name of the network.
 	// The name of the network.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// (String) The status of the network.
 	// The status of the network.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// (Attributes) The VPC information for the network. (see below for nested schema)
 	VPC *VPCObservation `json:"vpc,omitempty" tf:"vpc,omitempty"`
 }
 
 type NetworkParameters struct {
 
+	// (String) The CIDR block for the network.
 	// The CIDR block for the network.
 	// +kubebuilder:validation:Optional
 	CidrBlock *string `json:"cidrBlock,omitempty" tf:"cidr_block,omitempty"`
 
+	// (Attributes) The location configuration for the network. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Location *LocationParameters `json:"location,omitempty" tf:"location,omitempty"`
 
+	// (String) The name of the network.
 	// The name of the network.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
@@ -93,9 +112,11 @@ type VPCInitParameters struct {
 
 type VPCObservation struct {
 
+	// (String) The account ID of the VPC.
 	// The account ID of the VPC.
 	AccountID *string `json:"accountId,omitempty" tf:"account_id,omitempty"`
 
+	// (String) The resource ID of the VPC.
 	// The resource ID of the VPC.
 	ResourceID *string `json:"resourceId,omitempty" tf:"resource_id,omitempty"`
 }
@@ -130,7 +151,7 @@ type NetworkStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Network is the Schema for the Networks API. <no value>
+// Network is the Schema for the Networks API. Manages a Dragonfly network.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

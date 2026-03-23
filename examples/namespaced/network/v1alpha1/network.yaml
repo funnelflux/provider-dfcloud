@@ -1,0 +1,32 @@
+---
+apiVersion: network.dfcloud.m.funnelflux.pro/v1alpha1
+kind: Network
+metadata:
+  name: example-network
+spec:
+  forProvider:
+    name: example-network
+    cidrBlock: "10.0.0.0/16"
+    location:
+      provider: gcp
+      region: europe-west1
+  providerConfigRef:
+    kind: ProviderConfig
+    name: default
+---
+apiVersion: network.dfcloud.m.funnelflux.pro/v1alpha1
+kind: Network
+metadata:
+  annotations:
+    meta.upbound.io/example-id: network/v1alpha1/network
+  labels:
+    testing.upbound.io/example-name: network
+  name: network
+  namespace: crossplane-system
+spec:
+  forProvider:
+    cidrBlock: 192.168.0.0/16
+    location:
+      provider: aws
+      region: eu-west-1
+    name: my-network

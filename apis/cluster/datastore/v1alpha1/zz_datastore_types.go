@@ -15,6 +15,7 @@ import (
 
 type ClusterInitParameters struct {
 
+	// (e.g. shard_memory × number of shards).
 	// The cluster shard memory in bytes. For example, `6250000000` represents 6.25 GB. If not set, the shard memory is managed automatically.
 	//
 	// Permitted values: `6250000000` (6.25 GB), `12500000000` (12.5 GB), `25000000000` (25 GB), `50000000000` (50 GB), `100000000000` (100 GB).
@@ -23,6 +24,7 @@ type ClusterInitParameters struct {
 
 type ClusterObservation struct {
 
+	// (e.g. shard_memory × number of shards).
 	// The cluster shard memory in bytes. For example, `6250000000` represents 6.25 GB. If not set, the shard memory is managed automatically.
 	//
 	// Permitted values: `6250000000` (6.25 GB), `12500000000` (12.5 GB), `25000000000` (25 GB), `50000000000` (50 GB), `100000000000` (100 GB).
@@ -31,6 +33,7 @@ type ClusterObservation struct {
 
 type ClusterParameters struct {
 
+	// (e.g. shard_memory × number of shards).
 	// The cluster shard memory in bytes. For example, `6250000000` represents 6.25 GB. If not set, the shard memory is managed automatically.
 	//
 	// Permitted values: `6250000000` (6.25 GB), `12500000000` (12.5 GB), `25000000000` (25 GB), `50000000000` (50 GB), `100000000000` (100 GB).
@@ -39,20 +42,28 @@ type ClusterParameters struct {
 }
 
 type DatastoreInitParameters struct {
+
+	// (Attributes) The cluster configuration for the datastore. (see below for nested schema)
 	Cluster *ClusterInitParameters `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
+	// (Boolean) Disable the passkey for the datastore.
 	// Disable the passkey for the datastore.
 	DisablePassKey *bool `json:"disablePassKey,omitempty" tf:"disable_pass_key,omitempty"`
 
+	// specific configuration. (see below for nested schema)
 	Dragonfly *DragonflyInitParameters `json:"dragonfly,omitempty" tf:"dragonfly,omitempty"`
 
+	// (Attributes) The location configuration for the datastore. (see below for nested schema)
 	Location *LocationInitParameters `json:"location,omitempty" tf:"location,omitempty"`
 
+	// (Attributes) The maintenance window configuration for the datastore. (see below for nested schema)
 	MaintenanceWindow *MaintenanceWindowInitParameters `json:"maintenanceWindow,omitempty" tf:"maintenance_window,omitempty"`
 
+	// (String) The name of the datastore.
 	// The name of the datastore.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// (String) The ID of the network the datastore should be placed into.
 	// The ID of the network the datastore should be placed into.
 	// +crossplane:generate:reference:type=github.com/funnelflux/provider-dfcloud/apis/cluster/network/v1alpha1.Network
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
@@ -65,61 +76,80 @@ type DatastoreInitParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
+	// (Attributes) The tier configuration for the datastore. (see below for nested schema)
 	Tier *TierInitParameters `json:"tier,omitempty" tf:"tier,omitempty"`
 }
 
 type DatastoreObservation struct {
 
+	// (String) The address of the datastore.
 	// The address of the datastore.
 	Addr *string `json:"addr,omitempty" tf:"addr,omitempty"`
 
+	// (Attributes) The cluster configuration for the datastore. (see below for nested schema)
 	Cluster *ClusterObservation `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
+	// (Number) The timestamp when the datastore was created.
 	// The timestamp when the datastore was created.
 	CreatedAt *float64 `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// (Boolean) Disable the passkey for the datastore.
 	// Disable the passkey for the datastore.
 	DisablePassKey *bool `json:"disablePassKey,omitempty" tf:"disable_pass_key,omitempty"`
 
+	// specific configuration. (see below for nested schema)
 	Dragonfly *DragonflyObservation `json:"dragonfly,omitempty" tf:"dragonfly,omitempty"`
 
+	// (String) The ID of the datastore.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// (Attributes) The location configuration for the datastore. (see below for nested schema)
 	Location *LocationObservation `json:"location,omitempty" tf:"location,omitempty"`
 
+	// (Attributes) The maintenance window configuration for the datastore. (see below for nested schema)
 	MaintenanceWindow *MaintenanceWindowObservation `json:"maintenanceWindow,omitempty" tf:"maintenance_window,omitempty"`
 
+	// (String) The name of the datastore.
 	// The name of the datastore.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// (String) The ID of the network the datastore should be placed into.
 	// The ID of the network the datastore should be placed into.
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
+	// (Attributes) The tier configuration for the datastore. (see below for nested schema)
 	Tier *TierObservation `json:"tier,omitempty" tf:"tier,omitempty"`
 }
 
 type DatastoreParameters struct {
 
+	// (Attributes) The cluster configuration for the datastore. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Cluster *ClusterParameters `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
+	// (Boolean) Disable the passkey for the datastore.
 	// Disable the passkey for the datastore.
 	// +kubebuilder:validation:Optional
 	DisablePassKey *bool `json:"disablePassKey,omitempty" tf:"disable_pass_key,omitempty"`
 
+	// specific configuration. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Dragonfly *DragonflyParameters `json:"dragonfly,omitempty" tf:"dragonfly,omitempty"`
 
+	// (Attributes) The location configuration for the datastore. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Location *LocationParameters `json:"location,omitempty" tf:"location,omitempty"`
 
+	// (Attributes) The maintenance window configuration for the datastore. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	MaintenanceWindow *MaintenanceWindowParameters `json:"maintenanceWindow,omitempty" tf:"maintenance_window,omitempty"`
 
+	// (String) The name of the datastore.
 	// The name of the datastore.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// (String) The ID of the network the datastore should be placed into.
 	// The ID of the network the datastore should be placed into.
 	// +crossplane:generate:reference:type=github.com/funnelflux/provider-dfcloud/apis/cluster/network/v1alpha1.Network
 	// +kubebuilder:validation:Optional
@@ -133,6 +163,7 @@ type DatastoreParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
+	// (Attributes) The tier configuration for the datastore. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Tier *TierParameters `json:"tier,omitempty" tf:"tier,omitempty"`
 }
@@ -140,62 +171,78 @@ type DatastoreParameters struct {
 type DragonflyInitParameters struct {
 	ACLRules []*string `json:"aclRulesSecretRef,omitempty" tf:"-"`
 
+	// (Boolean) Enable BullMQ compatibility.
 	// Enable BullMQ compatibility.
 	Bullmq *bool `json:"bullmq,omitempty" tf:"bullmq,omitempty"`
 
+	// (Boolean) Enable cache mode for memory management.
 	// Enable cache mode for memory management.
 	CacheMode *bool `json:"cacheMode,omitempty" tf:"cache_mode,omitempty"`
 
+	// (Boolean) Enable Memcached protocol.
 	// Enable Memcached protocol.
 	Memcached *bool `json:"memcached,omitempty" tf:"memcached,omitempty"`
 
+	// (Boolean) Enable Sidekiq compatibility.
 	// Enable Sidekiq compatibility.
 	Sidekiq *bool `json:"sidekiq,omitempty" tf:"sidekiq,omitempty"`
 
+	// (Boolean) Enable TLS.
 	// Enable TLS.
 	TLS *bool `json:"tls,omitempty" tf:"tls,omitempty"`
 }
 
 type DragonflyObservation struct {
 
+	// (Boolean) Enable BullMQ compatibility.
 	// Enable BullMQ compatibility.
 	Bullmq *bool `json:"bullmq,omitempty" tf:"bullmq,omitempty"`
 
+	// (Boolean) Enable cache mode for memory management.
 	// Enable cache mode for memory management.
 	CacheMode *bool `json:"cacheMode,omitempty" tf:"cache_mode,omitempty"`
 
+	// (Boolean) Enable Memcached protocol.
 	// Enable Memcached protocol.
 	Memcached *bool `json:"memcached,omitempty" tf:"memcached,omitempty"`
 
+	// (Boolean) Enable Sidekiq compatibility.
 	// Enable Sidekiq compatibility.
 	Sidekiq *bool `json:"sidekiq,omitempty" tf:"sidekiq,omitempty"`
 
+	// (Boolean) Enable TLS.
 	// Enable TLS.
 	TLS *bool `json:"tls,omitempty" tf:"tls,omitempty"`
 }
 
 type DragonflyParameters struct {
 
+	// (List of String, Sensitive) List of ACL rules.
 	// List of ACL rules.
 	// +kubebuilder:validation:Optional
 	ACLRulesSecretRef *[]v1.SecretKeySelector `json:"aclRulesSecretRef,omitempty" tf:"-"`
 
+	// (Boolean) Enable BullMQ compatibility.
 	// Enable BullMQ compatibility.
 	// +kubebuilder:validation:Optional
 	Bullmq *bool `json:"bullmq,omitempty" tf:"bullmq,omitempty"`
 
+	// (Boolean) Enable cache mode for memory management.
 	// Enable cache mode for memory management.
 	// +kubebuilder:validation:Optional
 	CacheMode *bool `json:"cacheMode,omitempty" tf:"cache_mode,omitempty"`
 
+	// (Boolean) Enable Memcached protocol.
 	// Enable Memcached protocol.
 	// +kubebuilder:validation:Optional
 	Memcached *bool `json:"memcached,omitempty" tf:"memcached,omitempty"`
 
+	// (Boolean) Enable Sidekiq compatibility.
 	// Enable Sidekiq compatibility.
 	// +kubebuilder:validation:Optional
 	Sidekiq *bool `json:"sidekiq,omitempty" tf:"sidekiq,omitempty"`
 
+	// (Boolean) Enable TLS.
 	// Enable TLS.
 	// +kubebuilder:validation:Optional
 	TLS *bool `json:"tls,omitempty" tf:"tls,omitempty"`
@@ -203,38 +250,47 @@ type DragonflyParameters struct {
 
 type LocationInitParameters struct {
 
+	// (List of String) The availability zones for the datastore location.
 	// The availability zones for the datastore location.
 	AvailabilityZones []*string `json:"availabilityZones,omitempty" tf:"availability_zones,omitempty"`
 
+	// (String) The provider for the datastore location.
 	// The provider for the datastore location.
 	Provider *string `json:"provider,omitempty" tf:"provider,omitempty"`
 
+	// (String) The region for the datastore location.
 	// The region for the datastore location.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
 
 type LocationObservation struct {
 
+	// (List of String) The availability zones for the datastore location.
 	// The availability zones for the datastore location.
 	AvailabilityZones []*string `json:"availabilityZones,omitempty" tf:"availability_zones,omitempty"`
 
+	// (String) The provider for the datastore location.
 	// The provider for the datastore location.
 	Provider *string `json:"provider,omitempty" tf:"provider,omitempty"`
 
+	// (String) The region for the datastore location.
 	// The region for the datastore location.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
 
 type LocationParameters struct {
 
+	// (List of String) The availability zones for the datastore location.
 	// The availability zones for the datastore location.
 	// +kubebuilder:validation:Optional
 	AvailabilityZones []*string `json:"availabilityZones,omitempty" tf:"availability_zones,omitempty"`
 
+	// (String) The provider for the datastore location.
 	// The provider for the datastore location.
 	// +kubebuilder:validation:Optional
 	Provider *string `json:"provider" tf:"provider,omitempty"`
 
+	// (String) The region for the datastore location.
 	// The region for the datastore location.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region" tf:"region,omitempty"`
@@ -242,38 +298,47 @@ type LocationParameters struct {
 
 type MaintenanceWindowInitParameters struct {
 
+	// (Number) DurationHours is the duration of the maintenance window in hours. 0 means maintenance is always allowed.
 	// DurationHours is the duration of the maintenance window in hours. 0 means maintenance is always allowed.
 	DurationHours *float64 `json:"durationHours,omitempty" tf:"duration_hours,omitempty"`
 
+	// 23.
 	// The hour of the day to start the maintenance window. 0-23.
 	Hour *float64 `json:"hour,omitempty" tf:"hour,omitempty"`
 
+	// 6, 0 is Sunday.
 	// The day of the week to start the maintenance window. 0-6, 0 is Sunday.
 	Weekday *float64 `json:"weekday,omitempty" tf:"weekday,omitempty"`
 }
 
 type MaintenanceWindowObservation struct {
 
+	// (Number) DurationHours is the duration of the maintenance window in hours. 0 means maintenance is always allowed.
 	// DurationHours is the duration of the maintenance window in hours. 0 means maintenance is always allowed.
 	DurationHours *float64 `json:"durationHours,omitempty" tf:"duration_hours,omitempty"`
 
+	// 23.
 	// The hour of the day to start the maintenance window. 0-23.
 	Hour *float64 `json:"hour,omitempty" tf:"hour,omitempty"`
 
+	// 6, 0 is Sunday.
 	// The day of the week to start the maintenance window. 0-6, 0 is Sunday.
 	Weekday *float64 `json:"weekday,omitempty" tf:"weekday,omitempty"`
 }
 
 type MaintenanceWindowParameters struct {
 
+	// (Number) DurationHours is the duration of the maintenance window in hours. 0 means maintenance is always allowed.
 	// DurationHours is the duration of the maintenance window in hours. 0 means maintenance is always allowed.
 	// +kubebuilder:validation:Optional
 	DurationHours *float64 `json:"durationHours,omitempty" tf:"duration_hours,omitempty"`
 
+	// 23.
 	// The hour of the day to start the maintenance window. 0-23.
 	// +kubebuilder:validation:Optional
 	Hour *float64 `json:"hour,omitempty" tf:"hour,omitempty"`
 
+	// 6, 0 is Sunday.
 	// The day of the week to start the maintenance window. 0-6, 0 is Sunday.
 	// +kubebuilder:validation:Optional
 	Weekday *float64 `json:"weekday,omitempty" tf:"weekday,omitempty"`
@@ -281,6 +346,7 @@ type MaintenanceWindowParameters struct {
 
 type TierInitParameters struct {
 
+	// (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
 	// The maximum memory (in bytes) for the datastore. For example, `12500000000` represents 12.5 GB.
 	//
 	// The permitted values listed below apply to non-swarm datastores. For swarm datastores, the value must be a multiple of `shard_memory` (e.g. `shard_memory` × number of shards).
@@ -305,15 +371,18 @@ type TierInitParameters struct {
 	// | Azure    | extreme  | `6.5e9`, `12.5e9`, `25e9`, `50e9`, `100e9`                                                                    |
 	MaxMemoryBytes *float64 `json:"maxMemoryBytes,omitempty" tf:"max_memory_bytes,omitempty"`
 
+	// (String) The performance tier for the datastore.
 	// The performance tier for the datastore.
 	PerformanceTier *string `json:"performanceTier,omitempty" tf:"performance_tier,omitempty"`
 
+	// (Number) The number of replicas for the datastore. Default is 0.
 	// The number of replicas for the datastore. Default is 0.
 	Replicas *float64 `json:"replicas,omitempty" tf:"replicas,omitempty"`
 }
 
 type TierObservation struct {
 
+	// (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
 	// The maximum memory (in bytes) for the datastore. For example, `12500000000` represents 12.5 GB.
 	//
 	// The permitted values listed below apply to non-swarm datastores. For swarm datastores, the value must be a multiple of `shard_memory` (e.g. `shard_memory` × number of shards).
@@ -338,15 +407,18 @@ type TierObservation struct {
 	// | Azure    | extreme  | `6.5e9`, `12.5e9`, `25e9`, `50e9`, `100e9`                                                                    |
 	MaxMemoryBytes *float64 `json:"maxMemoryBytes,omitempty" tf:"max_memory_bytes,omitempty"`
 
+	// (String) The performance tier for the datastore.
 	// The performance tier for the datastore.
 	PerformanceTier *string `json:"performanceTier,omitempty" tf:"performance_tier,omitempty"`
 
+	// (Number) The number of replicas for the datastore. Default is 0.
 	// The number of replicas for the datastore. Default is 0.
 	Replicas *float64 `json:"replicas,omitempty" tf:"replicas,omitempty"`
 }
 
 type TierParameters struct {
 
+	// (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
 	// The maximum memory (in bytes) for the datastore. For example, `12500000000` represents 12.5 GB.
 	//
 	// The permitted values listed below apply to non-swarm datastores. For swarm datastores, the value must be a multiple of `shard_memory` (e.g. `shard_memory` × number of shards).
@@ -372,10 +444,12 @@ type TierParameters struct {
 	// +kubebuilder:validation:Optional
 	MaxMemoryBytes *float64 `json:"maxMemoryBytes" tf:"max_memory_bytes,omitempty"`
 
+	// (String) The performance tier for the datastore.
 	// The performance tier for the datastore.
 	// +kubebuilder:validation:Optional
 	PerformanceTier *string `json:"performanceTier" tf:"performance_tier,omitempty"`
 
+	// (Number) The number of replicas for the datastore. Default is 0.
 	// The number of replicas for the datastore. Default is 0.
 	// +kubebuilder:validation:Optional
 	Replicas *float64 `json:"replicas,omitempty" tf:"replicas,omitempty"`
@@ -408,7 +482,7 @@ type DatastoreStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Datastore is the Schema for the Datastores API. <no value>
+// Datastore is the Schema for the Datastores API. Manages a Dragonfly datastore resource.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

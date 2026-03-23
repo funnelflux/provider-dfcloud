@@ -1,10 +1,34 @@
 name: dragonflydb/dfcloud
 resources:
-    dfcloud_connection Resource - terraform-provider-dfcloud:
+    dfcloud_connection:
         subCategory: ""
         description: Manages a Dragonfly network connection.
-        name: dfcloud_connection Resource - terraform-provider-dfcloud
+        name: dfcloud_connection
         title: dfcloud_connection Resource - terraform-provider-dfcloud
+        examples:
+            - name: aws_peering
+              manifest: |-
+                {
+                  "name": "my-aws-connection",
+                  "network_id": "${dfcloud_network.network.id}",
+                  "peer": {
+                    "account_id": "123456789012",
+                    "region": "us-east-1",
+                    "vpc_id": "vpc-0123456789abcdef0"
+                  }
+                }
+              references:
+                network_id: dfcloud_network.network.id
+              dependencies:
+                dfcloud_network.network: |-
+                    {
+                      "cidr_block": "192.168.0.0/16",
+                      "location": {
+                        "provider": "aws",
+                        "region": "us-east-1"
+                      },
+                      "name": "my-network"
+                    }
         argumentDocs:
             account_id: (String) The account ID of the target VPC.
             azure_app_object_id: (String) The object ID of the Azure AD application used for peering. Required for Azure network connections.
@@ -19,12 +43,105 @@ resources:
             status: (String) The status of the connection.
             status_detail: (String) Additional details about the connection status.
             vpc_id: (String) The ID of the target VPC.
-        importStatements: []
-    dfcloud_datastore Resource - terraform-provider-dfcloud:
+        importStatements:
+            - terraform import dfcloud_connection.aws_peering connection-id
+    dfcloud_datastore:
         subCategory: ""
         description: Manages a Dragonfly datastore resource.
-        name: dfcloud_datastore Resource - terraform-provider-dfcloud
+        name: dfcloud_datastore
         title: dfcloud_datastore Resource - terraform-provider-dfcloud
+        examples:
+            - name: cache
+              manifest: |-
+                {
+                  "dragonfly": {
+                    "cache_mode": true
+                  },
+                  "location": {
+                    "provider": "gcp",
+                    "region": "us-central1"
+                  },
+                  "name": "frontend-cache",
+                  "tier": {
+                    "max_memory_bytes": 3000000000,
+                    "performance_tier": "dev",
+                    "replicas": 1
+                  }
+                }
+              dependencies:
+                dfcloud_network.network: |-
+                    {
+                      "cidr_block": "192.168.0.0/16",
+                      "location": {
+                        "provider": "aws",
+                        "region": "eu-west-1"
+                      },
+                      "name": "my-network"
+                    }
+            - name: cache_cluster
+              manifest: |-
+                {
+                  "cluster": {
+                    "shard_memory": 3000000000
+                  },
+                  "dragonfly": {
+                    "cache_mode": true
+                  },
+                  "location": {
+                    "provider": "gcp",
+                    "region": "us-central1"
+                  },
+                  "name": "frontend-cache-cluster",
+                  "tier": {
+                    "max_memory_bytes": 6000000000,
+                    "performance_tier": "dev",
+                    "replicas": 1
+                  }
+                }
+              dependencies:
+                dfcloud_network.network: |-
+                    {
+                      "cidr_block": "192.168.0.0/16",
+                      "location": {
+                        "provider": "aws",
+                        "region": "eu-west-1"
+                      },
+                      "name": "my-network"
+                    }
+            - name: private
+              manifest: |-
+                {
+                  "disable_pass_key": true,
+                  "dragonfly": {
+                    "cache_mode": false
+                  },
+                  "location": {
+                    "availability_zones": [
+                      "euw1-az2"
+                    ],
+                    "provider": "aws",
+                    "region": "eu-west-1"
+                  },
+                  "name": "my-cache-datastore",
+                  "network_id": "${dfcloud_network.network.id}",
+                  "tier": {
+                    "max_memory_bytes": 3000000000,
+                    "performance_tier": "dev",
+                    "replicas": 0
+                  }
+                }
+              references:
+                network_id: dfcloud_network.network.id
+              dependencies:
+                dfcloud_network.network: |-
+                    {
+                      "cidr_block": "192.168.0.0/16",
+                      "location": {
+                        "provider": "aws",
+                        "region": "eu-west-1"
+                      },
+                      "name": "my-network"
+                    }
         argumentDocs:
             "3e9": |-
                 |
@@ -70,12 +187,24 @@ resources:
             tier: (Attributes) The tier configuration for the datastore. (see below for nested schema)
             tls: (Boolean) Enable TLS.
             weekday: (Number) The day of the week to start the maintenance window. 0-6, 0 is Sunday.
-        importStatements: []
-    dfcloud_network Resource - terraform-provider-dfcloud:
+        importStatements:
+            - terraform import dfcloud_datastore.cache datastore-id
+    dfcloud_network:
         subCategory: ""
         description: Manages a Dragonfly network.
-        name: dfcloud_network Resource - terraform-provider-dfcloud
+        name: dfcloud_network
         title: dfcloud_network Resource - terraform-provider-dfcloud
+        examples:
+            - name: network
+              manifest: |-
+                {
+                  "cidr_block": "192.168.0.0/16",
+                  "location": {
+                    "provider": "aws",
+                    "region": "eu-west-1"
+                  },
+                  "name": "my-network"
+                }
         argumentDocs:
             account_id: (String) The account ID of the VPC.
             cidr_block: (String) The CIDR block for the network.
@@ -88,4 +217,5 @@ resources:
             resource_id: (String) The resource ID of the VPC.
             status: (String) The status of the network.
             vpc: (Attributes) The VPC information for the network. (see below for nested schema)
-        importStatements: []
+        importStatements:
+            - terraform import dfcloud_network.network network-id

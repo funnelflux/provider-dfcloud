@@ -1,0 +1,50 @@
+---
+apiVersion: connection.dfcloud.funnelflux.pro/v1alpha1
+kind: Connection
+metadata:
+  name: example-connection
+spec:
+  forProvider:
+    name: example-connection
+    networkIdRef:
+      name: example-network
+    peer:
+      accountId: 'example-project'
+      vpcId: 'example-vpc'
+  providerConfigRef:
+    name: default
+---
+apiVersion: connection.dfcloud.funnelflux.pro/v1alpha1
+kind: Connection
+metadata:
+  annotations:
+    meta.upbound.io/example-id: connection/v1alpha1/connection
+  labels:
+    testing.upbound.io/example-name: aws_peering
+  name: aws-peering
+spec:
+  forProvider:
+    name: my-aws-connection
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: network
+    peer:
+      accountId: "123456789012"
+      region: us-east-1
+      vpcId: vpc-0123456789abcdef0
+---
+apiVersion: network.dfcloud.funnelflux.pro/v1alpha1
+kind: Network
+metadata:
+  annotations:
+    meta.upbound.io/example-id: connection/v1alpha1/connection
+  labels:
+    testing.upbound.io/example-name: network
+  name: network
+spec:
+  forProvider:
+    cidrBlock: 192.168.0.0/16
+    location:
+      provider: aws
+      region: us-east-1
+    name: my-network

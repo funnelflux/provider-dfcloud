@@ -34,7 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Network is the Schema for the Networks API. <no value>
+        description: Network is the Schema for the Networks API. Manages a Dragonfly
+          network.
         properties:
           apiVersion:
             description: |-
@@ -73,19 +74,29 @@ spec:
               forProvider:
                 properties:
                   cidrBlock:
-                    description: The CIDR block for the network.
+                    description: |-
+                      (String) The CIDR block for the network.
+                      The CIDR block for the network.
                     type: string
                   location:
+                    description: (Attributes) The location configuration for the network.
+                      (see below for nested schema)
                     properties:
                       provider:
-                        description: The provider for the network location.
+                        description: |-
+                          (String) The provider for the network location.
+                          The provider for the network location.
                         type: string
                       region:
-                        description: The region for the network location.
+                        description: |-
+                          (String) The region for the network location.
+                          The region for the network location.
                         type: string
                     type: object
                   name:
-                    description: The name of the network.
+                    description: |-
+                      (String) The name of the network.
+                      The name of the network.
                     type: string
                 type: object
               initProvider:
@@ -102,19 +113,29 @@ spec:
                   autoscaler.
                 properties:
                   cidrBlock:
-                    description: The CIDR block for the network.
+                    description: |-
+                      (String) The CIDR block for the network.
+                      The CIDR block for the network.
                     type: string
                   location:
+                    description: (Attributes) The location configuration for the network.
+                      (see below for nested schema)
                     properties:
                       provider:
-                        description: The provider for the network location.
+                        description: |-
+                          (String) The provider for the network location.
+                          The provider for the network location.
                         type: string
                       region:
-                        description: The region for the network location.
+                        description: |-
+                          (String) The region for the network location.
+                          The region for the network location.
                         type: string
                     type: object
                   name:
-                    description: The name of the network.
+                    description: |-
+                      (String) The name of the network.
+                      The name of the network.
                     type: string
                 type: object
               managementPolicies:
@@ -222,35 +243,56 @@ spec:
               atProvider:
                 properties:
                   cidrBlock:
-                    description: The CIDR block for the network.
+                    description: |-
+                      (String) The CIDR block for the network.
+                      The CIDR block for the network.
                     type: string
                   createdAt:
-                    description: The timestamp when the network was created.
+                    description: |-
+                      (Number) The timestamp when the network was created.
+                      The timestamp when the network was created.
                     type: number
                   id:
+                    description: (String) The ID of the network.
                     type: string
                   location:
+                    description: (Attributes) The location configuration for the network.
+                      (see below for nested schema)
                     properties:
                       provider:
-                        description: The provider for the network location.
+                        description: |-
+                          (String) The provider for the network location.
+                          The provider for the network location.
                         type: string
                       region:
-                        description: The region for the network location.
+                        description: |-
+                          (String) The region for the network location.
+                          The region for the network location.
                         type: string
                     type: object
                   name:
-                    description: The name of the network.
+                    description: |-
+                      (String) The name of the network.
+                      The name of the network.
                     type: string
                   status:
-                    description: The status of the network.
+                    description: |-
+                      (String) The status of the network.
+                      The status of the network.
                     type: string
                   vpc:
+                    description: (Attributes) The VPC information for the network.
+                      (see below for nested schema)
                     properties:
                       accountId:
-                        description: The account ID of the VPC.
+                        description: |-
+                          (String) The account ID of the VPC.
+                          The account ID of the VPC.
                         type: string
                       resourceId:
-                        description: The resource ID of the VPC.
+                        description: |-
+                          (String) The resource ID of the VPC.
+                          The resource ID of the VPC.
                         type: string
                     type: object
                 type: object

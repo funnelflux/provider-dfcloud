@@ -34,7 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Datastore is the Schema for the Datastores API. <no value>
+        description: Datastore is the Schema for the Datastores API. Manages a Dragonfly
+          datastore resource.
         properties:
           apiVersion:
             description: |-
@@ -73,21 +74,29 @@ spec:
               forProvider:
                 properties:
                   cluster:
+                    description: (Attributes) The cluster configuration for the datastore.
+                      (see below for nested schema)
                     properties:
                       shardMemory:
                         description: |-
+                          (e.g. shard_memory × number of shards).
                           The cluster shard memory in bytes. For example, `6250000000` represents 6.25 GB. If not set, the shard memory is managed automatically.
 
                           Permitted values: `6250000000` (6.25 GB), `12500000000` (12.5 GB), `25000000000` (25 GB), `50000000000` (50 GB), `100000000000` (100 GB).
                         type: number
                     type: object
                   disablePassKey:
-                    description: Disable the passkey for the datastore.
+                    description: |-
+                      (Boolean) Disable the passkey for the datastore.
+                      Disable the passkey for the datastore.
                     type: boolean
                   dragonfly:
+                    description: specific configuration. (see below for nested schema)
                     properties:
                       aclRulesSecretRef:
-                        description: List of ACL rules.
+                        description: |-
+                          (List of String, Sensitive) List of ACL rules.
+                          List of ACL rules.
                         items:
                           description: A SecretKeySelector is a reference to a secret
                             key in an arbitrary namespace.
@@ -108,56 +117,82 @@ spec:
                           type: object
                         type: array
                       bullmq:
-                        description: Enable BullMQ compatibility.
+                        description: |-
+                          (Boolean) Enable BullMQ compatibility.
+                          Enable BullMQ compatibility.
                         type: boolean
                       cacheMode:
-                        description: Enable cache mode for memory management.
+                        description: |-
+                          (Boolean) Enable cache mode for memory management.
+                          Enable cache mode for memory management.
                         type: boolean
                       memcached:
-                        description: Enable Memcached protocol.
+                        description: |-
+                          (Boolean) Enable Memcached protocol.
+                          Enable Memcached protocol.
                         type: boolean
                       sidekiq:
-                        description: Enable Sidekiq compatibility.
+                        description: |-
+                          (Boolean) Enable Sidekiq compatibility.
+                          Enable Sidekiq compatibility.
                         type: boolean
                       tls:
-                        description: Enable TLS.
+                        description: |-
+                          (Boolean) Enable TLS.
+                          Enable TLS.
                         type: boolean
                     type: object
                   location:
+                    description: (Attributes) The location configuration for the datastore.
+                      (see below for nested schema)
                     properties:
                       availabilityZones:
-                        description: The availability zones for the datastore location.
+                        description: |-
+                          (List of String) The availability zones for the datastore location.
+                          The availability zones for the datastore location.
                         items:
                           type: string
                         type: array
                       provider:
-                        description: The provider for the datastore location.
+                        description: |-
+                          (String) The provider for the datastore location.
+                          The provider for the datastore location.
                         type: string
                       region:
-                        description: The region for the datastore location.
+                        description: |-
+                          (String) The region for the datastore location.
+                          The region for the datastore location.
                         type: string
                     type: object
                   maintenanceWindow:
+                    description: (Attributes) The maintenance window configuration
+                      for the datastore. (see below for nested schema)
                     properties:
                       durationHours:
-                        description: DurationHours is the duration of the maintenance
-                          window in hours. 0 means maintenance is always allowed.
+                        description: |-
+                          (Number) DurationHours is the duration of the maintenance window in hours. 0 means maintenance is always allowed.
+                          DurationHours is the duration of the maintenance window in hours. 0 means maintenance is always allowed.
                         type: number
                       hour:
-                        description: The hour of the day to start the maintenance
-                          window. 0-23.
+                        description: |-
+                          23.
+                          The hour of the day to start the maintenance window. 0-23.
                         type: number
                       weekday:
-                        description: The day of the week to start the maintenance
-                          window. 0-6, 0 is Sunday.
+                        description: |-
+                          6, 0 is Sunday.
+                          The day of the week to start the maintenance window. 0-6, 0 is Sunday.
                         type: number
                     type: object
                   name:
-                    description: The name of the datastore.
+                    description: |-
+                      (String) The name of the datastore.
+                      The name of the datastore.
                     type: string
                   networkId:
-                    description: The ID of the network the datastore should be placed
-                      into.
+                    description: |-
+                      (String) The ID of the network the datastore should be placed into.
+                      The ID of the network the datastore should be placed into.
                     type: string
                   networkIdRef:
                     description: Reference to a Network in network to populate networkId.
@@ -234,9 +269,12 @@ spec:
                         type: object
                     type: object
                   tier:
+                    description: (Attributes) The tier configuration for the datastore.
+                      (see below for nested schema)
                     properties:
                       maxMemoryBytes:
                         description: |-
+                          (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
                           The maximum memory (in bytes) for the datastore. For example, `12500000000` represents 12.5 GB.
 
                           The permitted values listed below apply to non-swarm datastores. For swarm datastores, the value must be a multiple of `shard_memory` (e.g. `shard_memory` × number of shards).
@@ -261,11 +299,14 @@ spec:
                           | Azure    | extreme  | `6.5e9`, `12.5e9`, `25e9`, `50e9`, `100e9`                                                                    |
                         type: number
                       performanceTier:
-                        description: The performance tier for the datastore.
+                        description: |-
+                          (String) The performance tier for the datastore.
+                          The performance tier for the datastore.
                         type: string
                       replicas:
-                        description: The number of replicas for the datastore. Default
-                          is 0.
+                        description: |-
+                          (Number) The number of replicas for the datastore. Default is 0.
+                          The number of replicas for the datastore. Default is 0.
                         type: number
                     type: object
                 type: object
@@ -283,74 +324,106 @@ spec:
                   autoscaler.
                 properties:
                   cluster:
+                    description: (Attributes) The cluster configuration for the datastore.
+                      (see below for nested schema)
                     properties:
                       shardMemory:
                         description: |-
+                          (e.g. shard_memory × number of shards).
                           The cluster shard memory in bytes. For example, `6250000000` represents 6.25 GB. If not set, the shard memory is managed automatically.
 
                           Permitted values: `6250000000` (6.25 GB), `12500000000` (12.5 GB), `25000000000` (25 GB), `50000000000` (50 GB), `100000000000` (100 GB).
                         type: number
                     type: object
                   disablePassKey:
-                    description: Disable the passkey for the datastore.
+                    description: |-
+                      (Boolean) Disable the passkey for the datastore.
+                      Disable the passkey for the datastore.
                     type: boolean
                   dragonfly:
+                    description: specific configuration. (see below for nested schema)
                     properties:
                       aclRulesSecretRef:
                         items:
                           type: string
                         type: array
                       bullmq:
-                        description: Enable BullMQ compatibility.
+                        description: |-
+                          (Boolean) Enable BullMQ compatibility.
+                          Enable BullMQ compatibility.
                         type: boolean
                       cacheMode:
-                        description: Enable cache mode for memory management.
+                        description: |-
+                          (Boolean) Enable cache mode for memory management.
+                          Enable cache mode for memory management.
                         type: boolean
                       memcached:
-                        description: Enable Memcached protocol.
+                        description: |-
+                          (Boolean) Enable Memcached protocol.
+                          Enable Memcached protocol.
                         type: boolean
                       sidekiq:
-                        description: Enable Sidekiq compatibility.
+                        description: |-
+                          (Boolean) Enable Sidekiq compatibility.
+                          Enable Sidekiq compatibility.
                         type: boolean
                       tls:
-                        description: Enable TLS.
+                        description: |-
+                          (Boolean) Enable TLS.
+                          Enable TLS.
                         type: boolean
                     type: object
                   location:
+                    description: (Attributes) The location configuration for the datastore.
+                      (see below for nested schema)
                     properties:
                       availabilityZones:
-                        description: The availability zones for the datastore location.
+                        description: |-
+                          (List of String) The availability zones for the datastore location.
+                          The availability zones for the datastore location.
                         items:
                           type: string
                         type: array
                       provider:
-                        description: The provider for the datastore location.
+                        description: |-
+                          (String) The provider for the datastore location.
+                          The provider for the datastore location.
                         type: string
                       region:
-                        description: The region for the datastore location.
+                        description: |-
+                          (String) The region for the datastore location.
+                          The region for the datastore location.
                         type: string
                     type: object
                   maintenanceWindow:
+                    description: (Attributes) The maintenance window configuration
+                      for the datastore. (see below for nested schema)
                     properties:
                       durationHours:
-                        description: DurationHours is the duration of the maintenance
-                          window in hours. 0 means maintenance is always allowed.
+                        description: |-
+                          (Number) DurationHours is the duration of the maintenance window in hours. 0 means maintenance is always allowed.
+                          DurationHours is the duration of the maintenance window in hours. 0 means maintenance is always allowed.
                         type: number
                       hour:
-                        description: The hour of the day to start the maintenance
-                          window. 0-23.
+                        description: |-
+                          23.
+                          The hour of the day to start the maintenance window. 0-23.
                         type: number
                       weekday:
-                        description: The day of the week to start the maintenance
-                          window. 0-6, 0 is Sunday.
+                        description: |-
+                          6, 0 is Sunday.
+                          The day of the week to start the maintenance window. 0-6, 0 is Sunday.
                         type: number
                     type: object
                   name:
-                    description: The name of the datastore.
+                    description: |-
+                      (String) The name of the datastore.
+                      The name of the datastore.
                     type: string
                   networkId:
-                    description: The ID of the network the datastore should be placed
-                      into.
+                    description: |-
+                      (String) The ID of the network the datastore should be placed into.
+                      The ID of the network the datastore should be placed into.
                     type: string
                   networkIdRef:
                     description: Reference to a Network in network to populate networkId.
@@ -427,9 +500,12 @@ spec:
                         type: object
                     type: object
                   tier:
+                    description: (Attributes) The tier configuration for the datastore.
+                      (see below for nested schema)
                     properties:
                       maxMemoryBytes:
                         description: |-
+                          (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
                           The maximum memory (in bytes) for the datastore. For example, `12500000000` represents 12.5 GB.
 
                           The permitted values listed below apply to non-swarm datastores. For swarm datastores, the value must be a multiple of `shard_memory` (e.g. `shard_memory` × number of shards).
@@ -454,11 +530,14 @@ spec:
                           | Azure    | extreme  | `6.5e9`, `12.5e9`, `25e9`, `50e9`, `100e9`                                                                    |
                         type: number
                       performanceTier:
-                        description: The performance tier for the datastore.
+                        description: |-
+                          (String) The performance tier for the datastore.
+                          The performance tier for the datastore.
                         type: string
                       replicas:
-                        description: The number of replicas for the datastore. Default
-                          is 0.
+                        description: |-
+                          (Number) The number of replicas for the datastore. Default is 0.
+                          The number of replicas for the datastore. Default is 0.
                         type: number
                     type: object
                 type: object
@@ -567,83 +646,123 @@ spec:
               atProvider:
                 properties:
                   addr:
-                    description: The address of the datastore.
+                    description: |-
+                      (String) The address of the datastore.
+                      The address of the datastore.
                     type: string
                   cluster:
+                    description: (Attributes) The cluster configuration for the datastore.
+                      (see below for nested schema)
                     properties:
                       shardMemory:
                         description: |-
+                          (e.g. shard_memory × number of shards).
                           The cluster shard memory in bytes. For example, `6250000000` represents 6.25 GB. If not set, the shard memory is managed automatically.
 
                           Permitted values: `6250000000` (6.25 GB), `12500000000` (12.5 GB), `25000000000` (25 GB), `50000000000` (50 GB), `100000000000` (100 GB).
                         type: number
                     type: object
                   createdAt:
-                    description: The timestamp when the datastore was created.
+                    description: |-
+                      (Number) The timestamp when the datastore was created.
+                      The timestamp when the datastore was created.
                     type: number
                   disablePassKey:
-                    description: Disable the passkey for the datastore.
+                    description: |-
+                      (Boolean) Disable the passkey for the datastore.
+                      Disable the passkey for the datastore.
                     type: boolean
                   dragonfly:
+                    description: specific configuration. (see below for nested schema)
                     properties:
                       bullmq:
-                        description: Enable BullMQ compatibility.
+                        description: |-
+                          (Boolean) Enable BullMQ compatibility.
+                          Enable BullMQ compatibility.
                         type: boolean
                       cacheMode:
-                        description: Enable cache mode for memory management.
+                        description: |-
+                          (Boolean) Enable cache mode for memory management.
+                          Enable cache mode for memory management.
                         type: boolean
                       memcached:
-                        description: Enable Memcached protocol.
+                        description: |-
+                          (Boolean) Enable Memcached protocol.
+                          Enable Memcached protocol.
                         type: boolean
                       sidekiq:
-                        description: Enable Sidekiq compatibility.
+                        description: |-
+                          (Boolean) Enable Sidekiq compatibility.
+                          Enable Sidekiq compatibility.
                         type: boolean
                       tls:
-                        description: Enable TLS.
+                        description: |-
+                          (Boolean) Enable TLS.
+                          Enable TLS.
                         type: boolean
                     type: object
                   id:
+                    description: (String) The ID of the datastore.
                     type: string
                   location:
+                    description: (Attributes) The location configuration for the datastore.
+                      (see below for nested schema)
                     properties:
                       availabilityZones:
-                        description: The availability zones for the datastore location.
+                        description: |-
+                          (List of String) The availability zones for the datastore location.
+                          The availability zones for the datastore location.
                         items:
                           type: string
                         type: array
                       provider:
-                        description: The provider for the datastore location.
+                        description: |-
+                          (String) The provider for the datastore location.
+                          The provider for the datastore location.
                         type: string
                       region:
-                        description: The region for the datastore location.
+                        description: |-
+                          (String) The region for the datastore location.
+                          The region for the datastore location.
                         type: string
                     type: object
                   maintenanceWindow:
+                    description: (Attributes) The maintenance window configuration
+                      for the datastore. (see below for nested schema)
                     properties:
                       durationHours:
-                        description: DurationHours is the duration of the maintenance
-                          window in hours. 0 means maintenance is always allowed.
+                        description: |-
+                          (Number) DurationHours is the duration of the maintenance window in hours. 0 means maintenance is always allowed.
+                          DurationHours is the duration of the maintenance window in hours. 0 means maintenance is always allowed.
                         type: number
                       hour:
-                        description: The hour of the day to start the maintenance
-                          window. 0-23.
+                        description: |-
+                          23.
+                          The hour of the day to start the maintenance window. 0-23.
                         type: number
                       weekday:
-                        description: The day of the week to start the maintenance
-                          window. 0-6, 0 is Sunday.
+                        description: |-
+                          6, 0 is Sunday.
+                          The day of the week to start the maintenance window. 0-6, 0 is Sunday.
                         type: number
                     type: object
                   name:
-                    description: The name of the datastore.
+                    description: |-
+                      (String) The name of the datastore.
+                      The name of the datastore.
                     type: string
                   networkId:
-                    description: The ID of the network the datastore should be placed
-                      into.
+                    description: |-
+                      (String) The ID of the network the datastore should be placed into.
+                      The ID of the network the datastore should be placed into.
                     type: string
                   tier:
+                    description: (Attributes) The tier configuration for the datastore.
+                      (see below for nested schema)
                     properties:
                       maxMemoryBytes:
                         description: |-
+                          (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
                           The maximum memory (in bytes) for the datastore. For example, `12500000000` represents 12.5 GB.
 
                           The permitted values listed below apply to non-swarm datastores. For swarm datastores, the value must be a multiple of `shard_memory` (e.g. `shard_memory` × number of shards).
@@ -668,11 +787,14 @@ spec:
                           | Azure    | extreme  | `6.5e9`, `12.5e9`, `25e9`, `50e9`, `100e9`                                                                    |
                         type: number
                       performanceTier:
-                        description: The performance tier for the datastore.
+                        description: |-
+                          (String) The performance tier for the datastore.
+                          The performance tier for the datastore.
                         type: string
                       replicas:
-                        description: The number of replicas for the datastore. Default
-                          is 0.
+                        description: |-
+                          (Number) The number of replicas for the datastore. Default is 0.
+                          The number of replicas for the datastore. Default is 0.
                         type: number
                     type: object
                 type: object

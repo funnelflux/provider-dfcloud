@@ -34,7 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Connection is the Schema for the Connections API. <no value>
+        description: Connection is the Schema for the Connections API. Manages a Dragonfly
+          network connection.
         properties:
           apiVersion:
             description: |-
@@ -73,10 +74,14 @@ spec:
               forProvider:
                 properties:
                   name:
-                    description: The name of the connection.
+                    description: |-
+                      (String) The name of the connection.
+                      The name of the connection.
                     type: string
                   networkId:
-                    description: The ID of the network to connect to.
+                    description: |-
+                      (String) The ID of the network to connect to.
+                      The ID of the network to connect to.
                     type: string
                   networkIdRef:
                     description: Reference to a Network in network to populate networkId.
@@ -153,28 +158,38 @@ spec:
                         type: object
                     type: object
                   peer:
+                    description: (Attributes) The VPC to connect to. (see below for
+                      nested schema)
                     properties:
                       accountId:
-                        description: The account ID of the target VPC.
+                        description: |-
+                          (String) The account ID of the target VPC.
+                          The account ID of the target VPC.
                         type: string
                       azureAppObjectId:
-                        description: The object ID of the Azure AD application used
-                          for peering. Required for Azure network connections.
+                        description: |-
+                          (String) The object ID of the Azure AD application used for peering. Required for Azure network connections.
+                          The object ID of the Azure AD application used for peering. Required for Azure network connections.
                         type: string
                       azureResourceGroup:
-                        description: The Azure resource group of the peer VNet. Required
-                          for Azure network connections.
+                        description: |-
+                          (String) The Azure resource group of the peer VNet. Required for Azure network connections.
+                          The Azure resource group of the peer VNet. Required for Azure network connections.
                         type: string
                       azureTenantId:
-                        description: The Azure tenant ID. Required for Azure network
-                          connections.
+                        description: |-
+                          (String) The Azure tenant ID. Required for Azure network connections.
+                          The Azure tenant ID. Required for Azure network connections.
                         type: string
                       region:
-                        description: The region of the target VPC. Only required for
-                          AWS cross-region connections.
+                        description: |-
+                          region connections.
+                          The region of the target VPC. Only required for AWS cross-region connections.
                         type: string
                       vpcId:
-                        description: The ID of the target VPC.
+                        description: |-
+                          (String) The ID of the target VPC.
+                          The ID of the target VPC.
                         type: string
                     type: object
                 type: object
@@ -192,10 +207,14 @@ spec:
                   autoscaler.
                 properties:
                   name:
-                    description: The name of the connection.
+                    description: |-
+                      (String) The name of the connection.
+                      The name of the connection.
                     type: string
                   networkId:
-                    description: The ID of the network to connect to.
+                    description: |-
+                      (String) The ID of the network to connect to.
+                      The ID of the network to connect to.
                     type: string
                   networkIdRef:
                     description: Reference to a Network in network to populate networkId.
@@ -272,28 +291,38 @@ spec:
                         type: object
                     type: object
                   peer:
+                    description: (Attributes) The VPC to connect to. (see below for
+                      nested schema)
                     properties:
                       accountId:
-                        description: The account ID of the target VPC.
+                        description: |-
+                          (String) The account ID of the target VPC.
+                          The account ID of the target VPC.
                         type: string
                       azureAppObjectId:
-                        description: The object ID of the Azure AD application used
-                          for peering. Required for Azure network connections.
+                        description: |-
+                          (String) The object ID of the Azure AD application used for peering. Required for Azure network connections.
+                          The object ID of the Azure AD application used for peering. Required for Azure network connections.
                         type: string
                       azureResourceGroup:
-                        description: The Azure resource group of the peer VNet. Required
-                          for Azure network connections.
+                        description: |-
+                          (String) The Azure resource group of the peer VNet. Required for Azure network connections.
+                          The Azure resource group of the peer VNet. Required for Azure network connections.
                         type: string
                       azureTenantId:
-                        description: The Azure tenant ID. Required for Azure network
-                          connections.
+                        description: |-
+                          (String) The Azure tenant ID. Required for Azure network connections.
+                          The Azure tenant ID. Required for Azure network connections.
                         type: string
                       region:
-                        description: The region of the target VPC. Only required for
-                          AWS cross-region connections.
+                        description: |-
+                          region connections.
+                          The region of the target VPC. Only required for AWS cross-region connections.
                         type: string
                       vpcId:
-                        description: The ID of the target VPC.
+                        description: |-
+                          (String) The ID of the target VPC.
+                          The ID of the target VPC.
                         type: string
                     type: object
                 type: object
@@ -398,49 +427,71 @@ spec:
               atProvider:
                 properties:
                   connectionId:
-                    description: The ID of the connection.
+                    description: |-
+                      (String) The ID of the connection.
+                      The ID of the connection.
                     type: string
                   id:
                     type: string
                   name:
-                    description: The name of the connection.
+                    description: |-
+                      (String) The name of the connection.
+                      The name of the connection.
                     type: string
                   networkId:
-                    description: The ID of the network to connect to.
+                    description: |-
+                      (String) The ID of the network to connect to.
+                      The ID of the network to connect to.
                     type: string
                   peer:
+                    description: (Attributes) The VPC to connect to. (see below for
+                      nested schema)
                     properties:
                       accountId:
-                        description: The account ID of the target VPC.
+                        description: |-
+                          (String) The account ID of the target VPC.
+                          The account ID of the target VPC.
                         type: string
                       azureAppObjectId:
-                        description: The object ID of the Azure AD application used
-                          for peering. Required for Azure network connections.
+                        description: |-
+                          (String) The object ID of the Azure AD application used for peering. Required for Azure network connections.
+                          The object ID of the Azure AD application used for peering. Required for Azure network connections.
                         type: string
                       azureResourceGroup:
-                        description: The Azure resource group of the peer VNet. Required
-                          for Azure network connections.
+                        description: |-
+                          (String) The Azure resource group of the peer VNet. Required for Azure network connections.
+                          The Azure resource group of the peer VNet. Required for Azure network connections.
                         type: string
                       azureTenantId:
-                        description: The Azure tenant ID. Required for Azure network
-                          connections.
+                        description: |-
+                          (String) The Azure tenant ID. Required for Azure network connections.
+                          The Azure tenant ID. Required for Azure network connections.
                         type: string
                       region:
-                        description: The region of the target VPC. Only required for
-                          AWS cross-region connections.
+                        description: |-
+                          region connections.
+                          The region of the target VPC. Only required for AWS cross-region connections.
                         type: string
                       vpcId:
-                        description: The ID of the target VPC.
+                        description: |-
+                          (String) The ID of the target VPC.
+                          The ID of the target VPC.
                         type: string
                     type: object
                   peerConnectionId:
-                    description: The underlying cloud provider connection ID.
+                    description: |-
+                      (String) The underlying cloud provider connection ID.
+                      The underlying cloud provider connection ID.
                     type: string
                   status:
-                    description: The status of the connection.
+                    description: |-
+                      (String) The status of the connection.
+                      The status of the connection.
                     type: string
                   statusDetail:
-                    description: Additional details about the connection status.
+                    description: |-
+                      (String) Additional details about the connection status.
+                      Additional details about the connection status.
                     type: string
                 type: object
               conditions:
