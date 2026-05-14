@@ -59,6 +59,11 @@ spec:
             properties:
               forProvider:
                 properties:
+                  byocAccountId:
+                    description: |-
+                      (String) The BYOC (Bring Your Own Cloud) account ID to provision the datastore into.
+                      The BYOC (Bring Your Own Cloud) account ID to provision the datastore into.
+                    type: string
                   cluster:
                     description: (Attributes) The cluster configuration for the datastore.
                       (see below for nested schema)
@@ -260,6 +265,11 @@ spec:
                     description: (Attributes) The tier configuration for the datastore.
                       (see below for nested schema)
                     properties:
+                      byocInstanceFamilyName:
+                        description: |-
+                          (String) The instance family name to use for BYOC datastores.
+                          The instance family name to use for BYOC datastores.
+                        type: string
                       maxMemoryBytes:
                         description: |-
                           (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
@@ -311,6 +321,11 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
+                  byocAccountId:
+                    description: |-
+                      (String) The BYOC (Bring Your Own Cloud) account ID to provision the datastore into.
+                      The BYOC (Bring Your Own Cloud) account ID to provision the datastore into.
+                    type: string
                   cluster:
                     description: (Attributes) The cluster configuration for the datastore.
                       (see below for nested schema)
@@ -497,6 +512,11 @@ spec:
                     description: (Attributes) The tier configuration for the datastore.
                       (see below for nested schema)
                     properties:
+                      byocInstanceFamilyName:
+                        description: |-
+                          (String) The instance family name to use for BYOC datastores.
+                          The instance family name to use for BYOC datastores.
+                        type: string
                       maxMemoryBytes:
                         description: |-
                           (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
@@ -616,6 +636,11 @@ spec:
                       (String) The address of the datastore.
                       The address of the datastore.
                     type: string
+                  byocAccountId:
+                    description: |-
+                      (String) The BYOC (Bring Your Own Cloud) account ID to provision the datastore into.
+                      The BYOC (Bring Your Own Cloud) account ID to provision the datastore into.
+                    type: string
                   cluster:
                     description: (Attributes) The cluster configuration for the datastore.
                       (see below for nested schema)
@@ -726,6 +751,11 @@ spec:
                     description: (Attributes) The tier configuration for the datastore.
                       (see below for nested schema)
                     properties:
+                      byocInstanceFamilyName:
+                        description: |-
+                          (String) The instance family name to use for BYOC datastores.
+                          The instance family name to use for BYOC datastores.
+                        type: string
                       maxMemoryBytes:
                         description: |-
                           (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.

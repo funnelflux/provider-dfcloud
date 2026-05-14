@@ -50,6 +50,10 @@ type LocationParameters struct {
 
 type NetworkInitParameters struct {
 
+	// (String) The BYOC (Bring Your Own Cloud) account ID to provision the network into.
+	// The BYOC (Bring Your Own Cloud) account ID to provision the network into.
+	ByocAccountID *string `json:"byocAccountId,omitempty" tf:"byoc_account_id,omitempty"`
+
 	// (String) The CIDR block for the network.
 	// The CIDR block for the network.
 	CidrBlock *string `json:"cidrBlock,omitempty" tf:"cidr_block,omitempty"`
@@ -63,6 +67,10 @@ type NetworkInitParameters struct {
 }
 
 type NetworkObservation struct {
+
+	// (String) The BYOC (Bring Your Own Cloud) account ID to provision the network into.
+	// The BYOC (Bring Your Own Cloud) account ID to provision the network into.
+	ByocAccountID *string `json:"byocAccountId,omitempty" tf:"byoc_account_id,omitempty"`
 
 	// (String) The CIDR block for the network.
 	// The CIDR block for the network.
@@ -91,6 +99,11 @@ type NetworkObservation struct {
 }
 
 type NetworkParameters struct {
+
+	// (String) The BYOC (Bring Your Own Cloud) account ID to provision the network into.
+	// The BYOC (Bring Your Own Cloud) account ID to provision the network into.
+	// +kubebuilder:validation:Optional
+	ByocAccountID *string `json:"byocAccountId,omitempty" tf:"byoc_account_id,omitempty"`
 
 	// (String) The CIDR block for the network.
 	// The CIDR block for the network.

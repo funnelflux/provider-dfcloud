@@ -73,6 +73,11 @@ spec:
                 type: string
               forProvider:
                 properties:
+                  byocAccountId:
+                    description: |-
+                      (String) The BYOC (Bring Your Own Cloud) account ID to provision the network into.
+                      The BYOC (Bring Your Own Cloud) account ID to provision the network into.
+                    type: string
                   cidrBlock:
                     description: |-
                       (String) The CIDR block for the network.
@@ -112,6 +117,11 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
+                  byocAccountId:
+                    description: |-
+                      (String) The BYOC (Bring Your Own Cloud) account ID to provision the network into.
+                      The BYOC (Bring Your Own Cloud) account ID to provision the network into.
+                    type: string
                   cidrBlock:
                     description: |-
                       (String) The CIDR block for the network.
@@ -242,6 +252,11 @@ spec:
             properties:
               atProvider:
                 properties:
+                  byocAccountId:
+                    description: |-
+                      (String) The BYOC (Bring Your Own Cloud) account ID to provision the network into.
+                      The BYOC (Bring Your Own Cloud) account ID to provision the network into.
+                    type: string
                   cidrBlock:
                     description: |-
                       (String) The CIDR block for the network.

@@ -181,6 +181,11 @@ spec:
                           (String) The Azure tenant ID. Required for Azure network connections.
                           The Azure tenant ID. Required for Azure network connections.
                         type: string
+                      azureUseRemoteGateways:
+                        description: |-
+                          (Boolean) Whether to use remote gateways in the Azure VNet peering. Defaults to false.
+                          Whether to use remote gateways in the Azure VNet peering. Defaults to false.
+                        type: boolean
                       region:
                         description: |-
                           region connections.
@@ -314,6 +319,11 @@ spec:
                           (String) The Azure tenant ID. Required for Azure network connections.
                           The Azure tenant ID. Required for Azure network connections.
                         type: string
+                      azureUseRemoteGateways:
+                        description: |-
+                          (Boolean) Whether to use remote gateways in the Azure VNet peering. Defaults to false.
+                          Whether to use remote gateways in the Azure VNet peering. Defaults to false.
+                        type: boolean
                       region:
                         description: |-
                           region connections.
@@ -467,6 +477,11 @@ spec:
                           (String) The Azure tenant ID. Required for Azure network connections.
                           The Azure tenant ID. Required for Azure network connections.
                         type: string
+                      azureUseRemoteGateways:
+                        description: |-
+                          (Boolean) Whether to use remote gateways in the Azure VNet peering. Defaults to false.
+                          Whether to use remote gateways in the Azure VNet peering. Defaults to false.
+                        type: boolean
                       region:
                         description: |-
                           region connections.

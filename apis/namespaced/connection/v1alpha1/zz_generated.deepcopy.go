@@ -265,6 +265,11 @@ func (in *PeerInitParameters) DeepCopyInto(out *PeerInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.AzureUseRemoteGateways != nil {
+		in, out := &in.AzureUseRemoteGateways, &out.AzureUseRemoteGateways
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region
 		*out = new(string)
@@ -310,6 +315,11 @@ func (in *PeerObservation) DeepCopyInto(out *PeerObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.AzureUseRemoteGateways != nil {
+		in, out := &in.AzureUseRemoteGateways, &out.AzureUseRemoteGateways
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region
 		*out = new(string)
@@ -353,6 +363,11 @@ func (in *PeerParameters) DeepCopyInto(out *PeerParameters) {
 	if in.AzureTenantID != nil {
 		in, out := &in.AzureTenantID, &out.AzureTenantID
 		*out = new(string)
+		**out = **in
+	}
+	if in.AzureUseRemoteGateways != nil {
+		in, out := &in.AzureUseRemoteGateways, &out.AzureUseRemoteGateways
+		*out = new(bool)
 		**out = **in
 	}
 	if in.Region != nil {

@@ -113,6 +113,10 @@ type PeerInitParameters struct {
 	// The Azure tenant ID. Required for Azure network connections.
 	AzureTenantID *string `json:"azureTenantId,omitempty" tf:"azure_tenant_id,omitempty"`
 
+	// (Boolean) Whether to use remote gateways in the Azure VNet peering. Defaults to false.
+	// Whether to use remote gateways in the Azure VNet peering. Defaults to false.
+	AzureUseRemoteGateways *bool `json:"azureUseRemoteGateways,omitempty" tf:"azure_use_remote_gateways,omitempty"`
+
 	// region connections.
 	// The region of the target VPC. Only required for AWS cross-region connections.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
@@ -139,6 +143,10 @@ type PeerObservation struct {
 	// (String) The Azure tenant ID. Required for Azure network connections.
 	// The Azure tenant ID. Required for Azure network connections.
 	AzureTenantID *string `json:"azureTenantId,omitempty" tf:"azure_tenant_id,omitempty"`
+
+	// (Boolean) Whether to use remote gateways in the Azure VNet peering. Defaults to false.
+	// Whether to use remote gateways in the Azure VNet peering. Defaults to false.
+	AzureUseRemoteGateways *bool `json:"azureUseRemoteGateways,omitempty" tf:"azure_use_remote_gateways,omitempty"`
 
 	// region connections.
 	// The region of the target VPC. Only required for AWS cross-region connections.
@@ -170,6 +178,11 @@ type PeerParameters struct {
 	// The Azure tenant ID. Required for Azure network connections.
 	// +kubebuilder:validation:Optional
 	AzureTenantID *string `json:"azureTenantId,omitempty" tf:"azure_tenant_id,omitempty"`
+
+	// (Boolean) Whether to use remote gateways in the Azure VNet peering. Defaults to false.
+	// Whether to use remote gateways in the Azure VNet peering. Defaults to false.
+	// +kubebuilder:validation:Optional
+	AzureUseRemoteGateways *bool `json:"azureUseRemoteGateways,omitempty" tf:"azure_use_remote_gateways,omitempty"`
 
 	// region connections.
 	// The region of the target VPC. Only required for AWS cross-region connections.

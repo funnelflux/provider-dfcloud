@@ -43,6 +43,10 @@ type ClusterParameters struct {
 
 type DatastoreInitParameters struct {
 
+	// (String) The BYOC (Bring Your Own Cloud) account ID to provision the datastore into.
+	// The BYOC (Bring Your Own Cloud) account ID to provision the datastore into.
+	ByocAccountID *string `json:"byocAccountId,omitempty" tf:"byoc_account_id,omitempty"`
+
 	// (Attributes) The cluster configuration for the datastore. (see below for nested schema)
 	Cluster *ClusterInitParameters `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
@@ -86,6 +90,10 @@ type DatastoreObservation struct {
 	// The address of the datastore.
 	Addr *string `json:"addr,omitempty" tf:"addr,omitempty"`
 
+	// (String) The BYOC (Bring Your Own Cloud) account ID to provision the datastore into.
+	// The BYOC (Bring Your Own Cloud) account ID to provision the datastore into.
+	ByocAccountID *string `json:"byocAccountId,omitempty" tf:"byoc_account_id,omitempty"`
+
 	// (Attributes) The cluster configuration for the datastore. (see below for nested schema)
 	Cluster *ClusterObservation `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
@@ -122,6 +130,11 @@ type DatastoreObservation struct {
 }
 
 type DatastoreParameters struct {
+
+	// (String) The BYOC (Bring Your Own Cloud) account ID to provision the datastore into.
+	// The BYOC (Bring Your Own Cloud) account ID to provision the datastore into.
+	// +kubebuilder:validation:Optional
+	ByocAccountID *string `json:"byocAccountId,omitempty" tf:"byoc_account_id,omitempty"`
 
 	// (Attributes) The cluster configuration for the datastore. (see below for nested schema)
 	// +kubebuilder:validation:Optional
@@ -346,6 +359,10 @@ type MaintenanceWindowParameters struct {
 
 type TierInitParameters struct {
 
+	// (String) The instance family name to use for BYOC datastores.
+	// The instance family name to use for BYOC datastores.
+	ByocInstanceFamilyName *string `json:"byocInstanceFamilyName,omitempty" tf:"byoc_instance_family_name,omitempty"`
+
 	// (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
 	// The maximum memory (in bytes) for the datastore. For example, `12500000000` represents 12.5 GB.
 	//
@@ -382,6 +399,10 @@ type TierInitParameters struct {
 
 type TierObservation struct {
 
+	// (String) The instance family name to use for BYOC datastores.
+	// The instance family name to use for BYOC datastores.
+	ByocInstanceFamilyName *string `json:"byocInstanceFamilyName,omitempty" tf:"byoc_instance_family_name,omitempty"`
+
 	// (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
 	// The maximum memory (in bytes) for the datastore. For example, `12500000000` represents 12.5 GB.
 	//
@@ -417,6 +438,11 @@ type TierObservation struct {
 }
 
 type TierParameters struct {
+
+	// (String) The instance family name to use for BYOC datastores.
+	// The instance family name to use for BYOC datastores.
+	// +kubebuilder:validation:Optional
+	ByocInstanceFamilyName *string `json:"byocInstanceFamilyName,omitempty" tf:"byoc_instance_family_name,omitempty"`
 
 	// (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
 	// The maximum memory (in bytes) for the datastore. For example, `12500000000` represents 12.5 GB.
