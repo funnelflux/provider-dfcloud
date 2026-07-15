@@ -296,7 +296,7 @@ type LocationParameters struct {
 	// (List of String) The availability zones for the datastore location.
 	// The availability zones for the datastore location.
 	// +kubebuilder:validation:Optional
-	AvailabilityZones []*string `json:"availabilityZones,omitempty" tf:"availability_zones,omitempty"`
+	AvailabilityZones []*string `json:"availabilityZones" tf:"availability_zones,omitempty"`
 
 	// (String) The provider for the datastore location.
 	// The provider for the datastore location.
