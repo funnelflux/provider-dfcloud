@@ -29,7 +29,7 @@ metadata:
       metadata:
         name: provider-dfcloud
       spec:
-        package: xpkg.upbound.io/deus/provider-dfcloud:v0.0.1
+        package: xpkg.upbound.io/funnelflux/provider-dfcloud:v0.1.2
       ```
 
       Apply it with:
@@ -38,7 +38,7 @@ metadata:
       kubectl apply -f provider.yaml
       ```
 
-      Replace `v0.0.1` with the package version you want to install.
+      Replace `v0.1.2` with the package version you want to install.
 
       ## Credentials Secret
 
