@@ -67,6 +67,10 @@ type DatastoreInitParameters struct {
 	// The name of the datastore.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// (List of String) A list of IP addresses or CIDR blocks that can access the datastore. If unset, defaults to 0.0.0.0/0 and allows all.
+	// A list of IP addresses or CIDR blocks that can access the datastore. If unset, defaults to 0.0.0.0/0 and allows all.
+	NetworkAllowedIps []*string `json:"networkAllowedIps,omitempty" tf:"network_allowed_ips,omitempty"`
+
 	// (String) The ID of the network the datastore should be placed into.
 	// The ID of the network the datastore should be placed into.
 	// +crossplane:generate:reference:type=github.com/funnelflux/provider-dfcloud/apis/cluster/network/v1alpha1.Network
@@ -121,6 +125,10 @@ type DatastoreObservation struct {
 	// The name of the datastore.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// (List of String) A list of IP addresses or CIDR blocks that can access the datastore. If unset, defaults to 0.0.0.0/0 and allows all.
+	// A list of IP addresses or CIDR blocks that can access the datastore. If unset, defaults to 0.0.0.0/0 and allows all.
+	NetworkAllowedIps []*string `json:"networkAllowedIps,omitempty" tf:"network_allowed_ips,omitempty"`
+
 	// (String) The ID of the network the datastore should be placed into.
 	// The ID of the network the datastore should be placed into.
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
@@ -161,6 +169,11 @@ type DatastoreParameters struct {
 	// The name of the datastore.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// (List of String) A list of IP addresses or CIDR blocks that can access the datastore. If unset, defaults to 0.0.0.0/0 and allows all.
+	// A list of IP addresses or CIDR blocks that can access the datastore. If unset, defaults to 0.0.0.0/0 and allows all.
+	// +kubebuilder:validation:Optional
+	NetworkAllowedIps []*string `json:"networkAllowedIps,omitempty" tf:"network_allowed_ips,omitempty"`
 
 	// (String) The ID of the network the datastore should be placed into.
 	// The ID of the network the datastore should be placed into.
@@ -363,6 +376,10 @@ type TierInitParameters struct {
 	// The instance family name to use for BYOC datastores.
 	ByocInstanceFamilyName *string `json:"byocInstanceFamilyName,omitempty" tf:"byoc_instance_family_name,omitempty"`
 
+	// (String) The instance family name to use for custom datastores.
+	// The instance family name to use for custom datastores.
+	CustomInstanceFamilyName *string `json:"customInstanceFamilyName,omitempty" tf:"custom_instance_family_name,omitempty"`
+
 	// (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
 	// The maximum memory (in bytes) for the datastore. For example, `12500000000` represents 12.5 GB.
 	//
@@ -373,12 +390,14 @@ type TierInitParameters struct {
 	// | Provider | Tier     | Permitted values (bytes)                                                                                       |
 	// |----------|----------|----------------------------------------------------------------------------------------------------------------|
 	// | AWS      | dev      | `3e9`                                                                                                          |
-	// | AWS      | byoc     | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                                 |
+	// | AWS      | byoc     | `3e9`, `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                          |
+	// | AWS      | custom   |  `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                          |
 	// | AWS      | standard | `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                                           |
 	// | AWS      | enhanced | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                        |
 	// | AWS      | extreme  | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`                                                          |
 	// | GCP      | dev      | `3e9`                                                                                                          |
-	// | GCP      | byoc     | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                        |
+	// | GCP      | byoc     | `3e9`, `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                 |
+	// | GCP      | custom   | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                 |
 	// | GCP      | standard | `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                                  |
 	// | GCP      | enhanced | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `150e9`, `200e9`, `250e9`, `300e9`, `400e9`                      |
 	// | GCP      | extreme  | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `150e9`, `200e9`                                                 |
@@ -395,6 +414,10 @@ type TierInitParameters struct {
 	// (Number) The number of replicas for the datastore. Default is 0.
 	// The number of replicas for the datastore. Default is 0.
 	Replicas *float64 `json:"replicas,omitempty" tf:"replicas,omitempty"`
+
+	// (Boolean) Enables SSD tiering. Default is false.
+	// Enables SSD tiering. Default is false.
+	Ssd *bool `json:"ssd,omitempty" tf:"ssd,omitempty"`
 }
 
 type TierObservation struct {
@@ -403,6 +426,10 @@ type TierObservation struct {
 	// The instance family name to use for BYOC datastores.
 	ByocInstanceFamilyName *string `json:"byocInstanceFamilyName,omitempty" tf:"byoc_instance_family_name,omitempty"`
 
+	// (String) The instance family name to use for custom datastores.
+	// The instance family name to use for custom datastores.
+	CustomInstanceFamilyName *string `json:"customInstanceFamilyName,omitempty" tf:"custom_instance_family_name,omitempty"`
+
 	// (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
 	// The maximum memory (in bytes) for the datastore. For example, `12500000000` represents 12.5 GB.
 	//
@@ -413,12 +440,14 @@ type TierObservation struct {
 	// | Provider | Tier     | Permitted values (bytes)                                                                                       |
 	// |----------|----------|----------------------------------------------------------------------------------------------------------------|
 	// | AWS      | dev      | `3e9`                                                                                                          |
-	// | AWS      | byoc     | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                                 |
+	// | AWS      | byoc     | `3e9`, `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                          |
+	// | AWS      | custom   |  `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                          |
 	// | AWS      | standard | `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                                           |
 	// | AWS      | enhanced | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                        |
 	// | AWS      | extreme  | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`                                                          |
 	// | GCP      | dev      | `3e9`                                                                                                          |
-	// | GCP      | byoc     | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                        |
+	// | GCP      | byoc     | `3e9`, `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                 |
+	// | GCP      | custom   | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                 |
 	// | GCP      | standard | `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                                  |
 	// | GCP      | enhanced | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `150e9`, `200e9`, `250e9`, `300e9`, `400e9`                      |
 	// | GCP      | extreme  | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `150e9`, `200e9`                                                 |
@@ -435,6 +464,10 @@ type TierObservation struct {
 	// (Number) The number of replicas for the datastore. Default is 0.
 	// The number of replicas for the datastore. Default is 0.
 	Replicas *float64 `json:"replicas,omitempty" tf:"replicas,omitempty"`
+
+	// (Boolean) Enables SSD tiering. Default is false.
+	// Enables SSD tiering. Default is false.
+	Ssd *bool `json:"ssd,omitempty" tf:"ssd,omitempty"`
 }
 
 type TierParameters struct {
@@ -444,6 +477,11 @@ type TierParameters struct {
 	// +kubebuilder:validation:Optional
 	ByocInstanceFamilyName *string `json:"byocInstanceFamilyName,omitempty" tf:"byoc_instance_family_name,omitempty"`
 
+	// (String) The instance family name to use for custom datastores.
+	// The instance family name to use for custom datastores.
+	// +kubebuilder:validation:Optional
+	CustomInstanceFamilyName *string `json:"customInstanceFamilyName,omitempty" tf:"custom_instance_family_name,omitempty"`
+
 	// (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
 	// The maximum memory (in bytes) for the datastore. For example, `12500000000` represents 12.5 GB.
 	//
@@ -454,12 +492,14 @@ type TierParameters struct {
 	// | Provider | Tier     | Permitted values (bytes)                                                                                       |
 	// |----------|----------|----------------------------------------------------------------------------------------------------------------|
 	// | AWS      | dev      | `3e9`                                                                                                          |
-	// | AWS      | byoc     | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                                 |
+	// | AWS      | byoc     | `3e9`, `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                          |
+	// | AWS      | custom   |  `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                          |
 	// | AWS      | standard | `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                                           |
 	// | AWS      | enhanced | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                        |
 	// | AWS      | extreme  | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`                                                          |
 	// | GCP      | dev      | `3e9`                                                                                                          |
-	// | GCP      | byoc     | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                        |
+	// | GCP      | byoc     | `3e9`, `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                 |
+	// | GCP      | custom   | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                 |
 	// | GCP      | standard | `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                                  |
 	// | GCP      | enhanced | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `150e9`, `200e9`, `250e9`, `300e9`, `400e9`                      |
 	// | GCP      | extreme  | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `150e9`, `200e9`                                                 |
@@ -479,6 +519,11 @@ type TierParameters struct {
 	// The number of replicas for the datastore. Default is 0.
 	// +kubebuilder:validation:Optional
 	Replicas *float64 `json:"replicas,omitempty" tf:"replicas,omitempty"`
+
+	// (Boolean) Enables SSD tiering. Default is false.
+	// Enables SSD tiering. Default is false.
+	// +kubebuilder:validation:Optional
+	Ssd *bool `json:"ssd,omitempty" tf:"ssd,omitempty"`
 }
 
 // DatastoreSpec defines the desired state of Datastore

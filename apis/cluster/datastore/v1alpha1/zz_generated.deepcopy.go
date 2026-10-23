@@ -138,6 +138,17 @@ func (in *DatastoreInitParameters) DeepCopyInto(out *DatastoreInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.NetworkAllowedIps != nil {
+		in, out := &in.NetworkAllowedIps, &out.NetworkAllowedIps
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
 	if in.NetworkID != nil {
 		in, out := &in.NetworkID, &out.NetworkID
 		*out = new(string)
@@ -255,6 +266,17 @@ func (in *DatastoreObservation) DeepCopyInto(out *DatastoreObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.NetworkAllowedIps != nil {
+		in, out := &in.NetworkAllowedIps, &out.NetworkAllowedIps
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
 	if in.NetworkID != nil {
 		in, out := &in.NetworkID, &out.NetworkID
 		*out = new(string)
@@ -314,6 +336,17 @@ func (in *DatastoreParameters) DeepCopyInto(out *DatastoreParameters) {
 		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
+	}
+	if in.NetworkAllowedIps != nil {
+		in, out := &in.NetworkAllowedIps, &out.NetworkAllowedIps
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
 	}
 	if in.NetworkID != nil {
 		in, out := &in.NetworkID, &out.NetworkID
@@ -728,6 +761,11 @@ func (in *TierInitParameters) DeepCopyInto(out *TierInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.CustomInstanceFamilyName != nil {
+		in, out := &in.CustomInstanceFamilyName, &out.CustomInstanceFamilyName
+		*out = new(string)
+		**out = **in
+	}
 	if in.MaxMemoryBytes != nil {
 		in, out := &in.MaxMemoryBytes, &out.MaxMemoryBytes
 		*out = new(float64)
@@ -741,6 +779,11 @@ func (in *TierInitParameters) DeepCopyInto(out *TierInitParameters) {
 	if in.Replicas != nil {
 		in, out := &in.Replicas, &out.Replicas
 		*out = new(float64)
+		**out = **in
+	}
+	if in.Ssd != nil {
+		in, out := &in.Ssd, &out.Ssd
+		*out = new(bool)
 		**out = **in
 	}
 }
@@ -763,6 +806,11 @@ func (in *TierObservation) DeepCopyInto(out *TierObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.CustomInstanceFamilyName != nil {
+		in, out := &in.CustomInstanceFamilyName, &out.CustomInstanceFamilyName
+		*out = new(string)
+		**out = **in
+	}
 	if in.MaxMemoryBytes != nil {
 		in, out := &in.MaxMemoryBytes, &out.MaxMemoryBytes
 		*out = new(float64)
@@ -776,6 +824,11 @@ func (in *TierObservation) DeepCopyInto(out *TierObservation) {
 	if in.Replicas != nil {
 		in, out := &in.Replicas, &out.Replicas
 		*out = new(float64)
+		**out = **in
+	}
+	if in.Ssd != nil {
+		in, out := &in.Ssd, &out.Ssd
+		*out = new(bool)
 		**out = **in
 	}
 }
@@ -798,6 +851,11 @@ func (in *TierParameters) DeepCopyInto(out *TierParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.CustomInstanceFamilyName != nil {
+		in, out := &in.CustomInstanceFamilyName, &out.CustomInstanceFamilyName
+		*out = new(string)
+		**out = **in
+	}
 	if in.MaxMemoryBytes != nil {
 		in, out := &in.MaxMemoryBytes, &out.MaxMemoryBytes
 		*out = new(float64)
@@ -811,6 +869,11 @@ func (in *TierParameters) DeepCopyInto(out *TierParameters) {
 	if in.Replicas != nil {
 		in, out := &in.Replicas, &out.Replicas
 		*out = new(float64)
+		**out = **in
+	}
+	if in.Ssd != nil {
+		in, out := &in.Ssd, &out.Ssd
+		*out = new(bool)
 		**out = **in
 	}
 }

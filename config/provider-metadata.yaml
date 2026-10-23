@@ -59,6 +59,10 @@ resources:
                     "cache_mode": true
                   },
                   "location": {
+                    "availability_zones": [
+                      "us-central1-a",
+                      "us-central1-a"
+                    ],
                     "provider": "gcp",
                     "region": "us-central1"
                   },
@@ -89,6 +93,10 @@ resources:
                     "cache_mode": true
                   },
                   "location": {
+                    "availability_zones": [
+                      "us-central1-a",
+                      "us-central1-a"
+                    ],
                     "provider": "gcp",
                     "region": "us-central1"
                   },
@@ -146,12 +154,14 @@ resources:
         argumentDocs:
             "3e9": |-
                 |
-                | AWS      | byoc     | 6.25e9, 12.5e9, 25e9, 50e9, 100e9, 200e9, 400e9                                                 |
+                | AWS      | byoc     | 3e9, 6.25e9, 12.5e9, 25e9, 50e9, 100e9, 200e9, 400e9                                          |
+                | AWS      | custom   |  6.25e9, 12.5e9, 25e9, 50e9, 100e9, 200e9, 400e9                                          |
                 | AWS      | standard | 12.5e9, 25e9, 50e9, 100e9, 200e9, 400e9                                                           |
                 | AWS      | enhanced | 6.25e9, 12.5e9, 25e9, 50e9, 100e9, 200e9, 300e9, 400e9                                        |
                 | AWS      | extreme  | 6.25e9, 12.5e9, 25e9, 50e9, 100e9, 200e9                                                          |
                 | GCP      | dev      | 3e9                                                                                                          |
-                | GCP      | byoc     | 6.25e9, 12.5e9, 25e9, 50e9, 100e9, 200e9, 300e9, 400e9                                        |
+                | GCP      | byoc     | 3e9, 6.25e9, 12.5e9, 25e9, 50e9, 100e9, 200e9, 300e9, 400e9                                 |
+                | GCP      | custom   | 6.25e9, 12.5e9, 25e9, 50e9, 100e9, 200e9, 300e9, 400e9                                 |
                 | GCP      | standard | 12.5e9, 25e9, 50e9, 100e9, 200e9, 300e9, 400e9                                                  |
                 | GCP      | enhanced | 6.25e9, 12.5e9, 25e9, 50e9, 100e9, 150e9, 200e9, 250e9, 300e9, 400e9                      |
                 | GCP      | extreme  | 6.25e9, 12.5e9, 25e9, 50e9, 100e9, 150e9, 200e9                                                 |
@@ -169,6 +179,7 @@ resources:
             cache_mode: (Boolean) Enable cache mode for memory management.
             cluster: (Attributes) The cluster configuration for the datastore. (see below for nested schema)
             created_at: (Number) The timestamp when the datastore was created.
+            custom_instance_family_name: (String) The instance family name to use for custom datastores.
             disable_pass_key: (Boolean) Disable the passkey for the datastore.
             dragonfly: (Attributes) Dragonfly-specific configuration. (see below for nested schema)
             duration_hours: (Number) DurationHours is the duration of the maintenance window in hours. 0 means maintenance is always allowed.
@@ -179,6 +190,7 @@ resources:
             max_memory_bytes: (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
             memcached: (Boolean) Enable Memcached protocol.
             name: (String) The name of the datastore.
+            network_allowed_ips: (List of String) A list of IP addresses or CIDR blocks that can access the datastore. If unset, defaults to 0.0.0.0/0 and allows all.
             network_id: (String) The ID of the network the datastore should be placed into.
             password: (String, Sensitive) The password for the datastore.
             performance_tier: (String) The performance tier for the datastore.
@@ -187,6 +199,7 @@ resources:
             replicas: (Number) The number of replicas for the datastore. Default is 0.
             shard_memory: (e.g. shard_memory × number of shards).
             sidekiq: (Boolean) Enable Sidekiq compatibility.
+            ssd: (Boolean) Enables SSD tiering. Default is false.
             tier: (Attributes) The tier configuration for the datastore. (see below for nested schema)
             tls: (Boolean) Enable TLS.
             weekday: (Number) The day of the week to start the maintenance window. 0-6, 0 is Sunday.

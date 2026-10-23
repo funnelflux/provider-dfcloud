@@ -176,6 +176,13 @@ spec:
                       (String) The name of the datastore.
                       The name of the datastore.
                     type: string
+                  networkAllowedIps:
+                    description: |-
+                      (List of String) A list of IP addresses or CIDR blocks that can access the datastore. If unset, defaults to 0.0.0.0/0 and allows all.
+                      A list of IP addresses or CIDR blocks that can access the datastore. If unset, defaults to 0.0.0.0/0 and allows all.
+                    items:
+                      type: string
+                    type: array
                   networkId:
                     description: |-
                       (String) The ID of the network the datastore should be placed into.
@@ -270,6 +277,11 @@ spec:
                           (String) The instance family name to use for BYOC datastores.
                           The instance family name to use for BYOC datastores.
                         type: string
+                      customInstanceFamilyName:
+                        description: |-
+                          (String) The instance family name to use for custom datastores.
+                          The instance family name to use for custom datastores.
+                        type: string
                       maxMemoryBytes:
                         description: |-
                           (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
@@ -282,12 +294,14 @@ spec:
                           | Provider | Tier     | Permitted values (bytes)                                                                                       |
                           |----------|----------|----------------------------------------------------------------------------------------------------------------|
                           | AWS      | dev      | `3e9`                                                                                                          |
-                          | AWS      | byoc     | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                                 |
+                          | AWS      | byoc     | `3e9`, `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                          |
+                          | AWS      | custom   |  `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                          |
                           | AWS      | standard | `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                                           |
                           | AWS      | enhanced | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                        |
                           | AWS      | extreme  | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`                                                          |
                           | GCP      | dev      | `3e9`                                                                                                          |
-                          | GCP      | byoc     | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                        |
+                          | GCP      | byoc     | `3e9`, `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                 |
+                          | GCP      | custom   | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                 |
                           | GCP      | standard | `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                                  |
                           | GCP      | enhanced | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `150e9`, `200e9`, `250e9`, `300e9`, `400e9`                      |
                           | GCP      | extreme  | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `150e9`, `200e9`                                                 |
@@ -306,6 +320,11 @@ spec:
                           (Number) The number of replicas for the datastore. Default is 0.
                           The number of replicas for the datastore. Default is 0.
                         type: number
+                      ssd:
+                        description: |-
+                          (Boolean) Enables SSD tiering. Default is false.
+                          Enables SSD tiering. Default is false.
+                        type: boolean
                     type: object
                 type: object
               initProvider:
@@ -423,6 +442,13 @@ spec:
                       (String) The name of the datastore.
                       The name of the datastore.
                     type: string
+                  networkAllowedIps:
+                    description: |-
+                      (List of String) A list of IP addresses or CIDR blocks that can access the datastore. If unset, defaults to 0.0.0.0/0 and allows all.
+                      A list of IP addresses or CIDR blocks that can access the datastore. If unset, defaults to 0.0.0.0/0 and allows all.
+                    items:
+                      type: string
+                    type: array
                   networkId:
                     description: |-
                       (String) The ID of the network the datastore should be placed into.
@@ -517,6 +543,11 @@ spec:
                           (String) The instance family name to use for BYOC datastores.
                           The instance family name to use for BYOC datastores.
                         type: string
+                      customInstanceFamilyName:
+                        description: |-
+                          (String) The instance family name to use for custom datastores.
+                          The instance family name to use for custom datastores.
+                        type: string
                       maxMemoryBytes:
                         description: |-
                           (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
@@ -529,12 +560,14 @@ spec:
                           | Provider | Tier     | Permitted values (bytes)                                                                                       |
                           |----------|----------|----------------------------------------------------------------------------------------------------------------|
                           | AWS      | dev      | `3e9`                                                                                                          |
-                          | AWS      | byoc     | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                                 |
+                          | AWS      | byoc     | `3e9`, `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                          |
+                          | AWS      | custom   |  `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                          |
                           | AWS      | standard | `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                                           |
                           | AWS      | enhanced | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                        |
                           | AWS      | extreme  | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`                                                          |
                           | GCP      | dev      | `3e9`                                                                                                          |
-                          | GCP      | byoc     | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                        |
+                          | GCP      | byoc     | `3e9`, `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                 |
+                          | GCP      | custom   | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                 |
                           | GCP      | standard | `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                                  |
                           | GCP      | enhanced | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `150e9`, `200e9`, `250e9`, `300e9`, `400e9`                      |
                           | GCP      | extreme  | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `150e9`, `200e9`                                                 |
@@ -553,6 +586,11 @@ spec:
                           (Number) The number of replicas for the datastore. Default is 0.
                           The number of replicas for the datastore. Default is 0.
                         type: number
+                      ssd:
+                        description: |-
+                          (Boolean) Enables SSD tiering. Default is false.
+                          Enables SSD tiering. Default is false.
+                        type: boolean
                     type: object
                 type: object
               managementPolicies:
@@ -742,6 +780,13 @@ spec:
                       (String) The name of the datastore.
                       The name of the datastore.
                     type: string
+                  networkAllowedIps:
+                    description: |-
+                      (List of String) A list of IP addresses or CIDR blocks that can access the datastore. If unset, defaults to 0.0.0.0/0 and allows all.
+                      A list of IP addresses or CIDR blocks that can access the datastore. If unset, defaults to 0.0.0.0/0 and allows all.
+                    items:
+                      type: string
+                    type: array
                   networkId:
                     description: |-
                       (String) The ID of the network the datastore should be placed into.
@@ -756,6 +801,11 @@ spec:
                           (String) The instance family name to use for BYOC datastores.
                           The instance family name to use for BYOC datastores.
                         type: string
+                      customInstanceFamilyName:
+                        description: |-
+                          (String) The instance family name to use for custom datastores.
+                          The instance family name to use for custom datastores.
+                        type: string
                       maxMemoryBytes:
                         description: |-
                           (Number) The maximum memory (in bytes) for the datastore. For example, 12500000000 represents 12.5 GB.
@@ -768,12 +818,14 @@ spec:
                           | Provider | Tier     | Permitted values (bytes)                                                                                       |
                           |----------|----------|----------------------------------------------------------------------------------------------------------------|
                           | AWS      | dev      | `3e9`                                                                                                          |
-                          | AWS      | byoc     | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                                 |
+                          | AWS      | byoc     | `3e9`, `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                          |
+                          | AWS      | custom   |  `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                          |
                           | AWS      | standard | `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `400e9`                                                           |
                           | AWS      | enhanced | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                        |
                           | AWS      | extreme  | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`                                                          |
                           | GCP      | dev      | `3e9`                                                                                                          |
-                          | GCP      | byoc     | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                        |
+                          | GCP      | byoc     | `3e9`, `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                 |
+                          | GCP      | custom   | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                 |
                           | GCP      | standard | `12.5e9`, `25e9`, `50e9`, `100e9`, `200e9`, `300e9`, `400e9`                                                  |
                           | GCP      | enhanced | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `150e9`, `200e9`, `250e9`, `300e9`, `400e9`                      |
                           | GCP      | extreme  | `6.25e9`, `12.5e9`, `25e9`, `50e9`, `100e9`, `150e9`, `200e9`                                                 |
@@ -792,6 +844,11 @@ spec:
                           (Number) The number of replicas for the datastore. Default is 0.
                           The number of replicas for the datastore. Default is 0.
                         type: number
+                      ssd:
+                        description: |-
+                          (Boolean) Enables SSD tiering. Default is false.
+                          Enables SSD tiering. Default is false.
+                        type: boolean
                     type: object
                 type: object
               conditions:
